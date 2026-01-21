@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ChatWidget from "./components/ChatWidget";
+import SnowSection from "./components/SnowSection";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,15 +21,70 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="relative antialiased">
+
+        {/* 🌨 Global Snow (background only) */}
+        <SnowSection />
+
+        {/* 📄 PAGE CONTENT — THIS WAS MISSING */}
+        <main className="relative z-20">
+          {children}
+        </main>
+
+        {/* 💬 AI Chat */}
+        <ChatWidget />
+
+        {/* 👣 FOOTER */}
+        <footer className="py-20 flex flex-col items-center gap-6 text-gray-500">
+          <div className="flex gap-6 items-center">
+
+            {/* GitHub */}
+            <a
+              href="https://github.com/ARY973"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="hover:text-black transition"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.11 3.29 9.44 7.86 10.97.58.11.79-.25.79-.56v-2.17c-3.2.7-3.87-1.38-3.87-1.38-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.21 1.79 1.21 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.06 11.06 0 012.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.67.42.36.79 1.08.79 2.18v3.24c0 .31.21.68.8.56 4.56-1.53 7.85-5.86 7.85-10.97C23.5 5.74 18.27.5 12 .5z" />
+              </svg>
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/aryan-mudhole-35a03816b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="hover:text-black transition"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.7c0-1.84-.03-4.2-2.56-4.2-2.56 0-2.95 2-2.95 4.07V24h-5V8z" />
+              </svg>
+            </a>
+
+            {/* Resume */}
+            <a
+              href="/resume/Ryan_Mudhole_Resume_Updated.docx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 font-semibold hover:border-black hover:text-black transition"
+            >
+              R
+            </a>
+          </div>
+
+          <p className="text-sm">
+            Built with Next.js, Tailwind, and curiosity.
+          </p>
+        </footer>
+
       </body>
     </html>
   );
