@@ -4,21 +4,30 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
-    category: "Machine Learning",
-    title: "Formula 1 Performance Analysis",
+    category: "Financial Analytics",
+    title: "FinTech Loan Default Risk Modeling",
     description:
-      "Applied machine learning techniques to analyze and model Formula 1 performance data, focusing on predictive insights and data-driven evaluation.",
-    tech: ["Python", "Pandas", "Scikit-learn", "Machine Learning"],
-    link: "/projects/Formula%201%20Presentation.pdf",
+      "Built classification models to predict loan default probability using cross-validation, feature engineering, and model optimization.",
+    tech: ["Python", "XGBoost", "Scikit-learn", "FinTech"],
+    link: "/projects/loan-default",
+    linkLabel: "View Project",
+  },
+  {
+    category: "Machine Learning",
+    title: "Formula 1 Performance Analytics",
+    description:
+      "Analyzed Formula 1 race performance data to uncover patterns in lap consistency, race strategy, and driver performance.",
+    tech: ["Python", "Pandas", "Data Analysis"],
+    link: "/projects/f1-analysis",
     linkLabel: "View Project",
   },
   {
     category: "Machine Learning",
     title: "Housing Price Prediction",
     description:
-      "Built predictive models to estimate housing prices using structured data. Emphasized feature engineering, model evaluation, and interpretability.",
-    tech: ["Python", "Regression", "Data Analysis"],
-    link: "/projects/project-1-presentation.pdf",
+      "Developed regression models to predict housing prices using structured datasets and feature engineering.",
+    tech: ["Python", "Regression", "Machine Learning"],
+    link: "/projects/housing-price",
     linkLabel: "View Project",
   },
 ];
@@ -46,7 +55,7 @@ export default function Projects() {
         </motion.div>
 
         {/* CARDS */}
-        <div className="grid gap-10 md:grid-cols-2">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, i) => (
             <motion.div
               key={i}
@@ -116,8 +125,6 @@ export default function Projects() {
               {/* LINK */}
               <a
                 href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="
                   inline-flex items-center gap-1
                   mt-6

@@ -29,30 +29,28 @@ export default function About() {
           </div>
         </div>
 
-        {/* RIGHT — TEXT */}
-        <div className="text-center md:text-left">
-          <h2 className="text-3xl font-semibold text-white">About</h2>
-          <p className="mt-4 text-gray-200 leading-relaxed">
-            About
-          </p>
+      {/* RIGHT — TEXT */}
+<div className="text-center md:text-left">
+  <h2 className="text-3xl font-semibold text-white">
+    About
+  </h2>
 
-          <p className="text-gray-800/90 leading-relaxed mb-4">
-            I’m Aryan, and I’m glad you’re here. I began my journey with a
-            Bachelor’s degree in Information Technology and early professional
-            experience working with Power BI analytics and SAP MM in India.
-          </p>
+  <p className="mt-4 text-slate-200 text-lg leading-relaxed mb-4">
+    I’m Aryan, and I’m glad you’re here. I began my journey with a
+    Bachelor’s degree in Information Technology and early professional
+    experience working with Power BI analytics and SAP MM in India.
+  </p>
 
-          <p className="text-gray-800/90leading-relaxed mb-4">
-            Wanting to deepen my technical depth and gain global exposure, I moved
-            to the United States to pursue a Master’s in Information Systems.
-          </p>
+  <p className="text-slate-200 text-lg leading-relaxed mb-4">
+    Wanting to deepen my technical depth and gain global exposure, I moved
+    to the United States to pursue a Master’s in Information Systems.
+  </p>
 
-          <p className="text-gray-800/90 leading-relaxed">
-            My long-term goal is to work at the intersection of data, machine
-            learning, and finance—helping teams make informed, strategic decisions.
-          </p>
-        </div>
-
+  <p className="text-slate-200 text-lg leading-relaxed">
+    My long-term goal is to work at the intersection of data, machine
+    learning, and finance—helping teams make informed, strategic decisions.
+  </p>
+</div>
       </motion.div>
     </section>
   );
