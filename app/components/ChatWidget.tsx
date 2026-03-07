@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Dispatch, SetStateAction } from "react";
 
 type Message = {
   role: "user" | "assistant";
@@ -12,8 +12,8 @@ export default function ChatWidget({
   setOpen,
 }: {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  }) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
