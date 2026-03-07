@@ -2,7 +2,11 @@
 
 import { motion } from "framer-motion";
 
-export default function Hero({ setOpen }: { setOpen: (v: boolean) => void }) {
+export default function Hero({
+  setOpen,
+}: {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-6">
 
