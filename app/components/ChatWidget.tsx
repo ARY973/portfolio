@@ -12,7 +12,7 @@ export default function ChatWidget({
   setOpen,
 }: {
   open: boolean;
-  setOpen: (v: boolean) => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([
