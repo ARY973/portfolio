@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ChatWidget from "./components/ChatWidget";
 import SnowSection from "./components/SnowSection";
 
 const geistSans = Geist({
@@ -36,8 +35,7 @@ export default function RootLayout({
           {children}
         </main>
 
-        {/* 💬 AI Chat */}
-        <ChatWidget />
+        
 
         {/* 👣 FOOTER */}
         <footer className="py-20 flex flex-col items-center gap-6 text-gray-500">

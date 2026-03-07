@@ -1,24 +1,65 @@
 "use client";
 
-export default function Hero() {
+import { motion } from "framer-motion";
+
+export default function Hero({ setOpen }: { setOpen: (v: boolean) => void }) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6">
-  
-  {/* Glass content container */}
-  <div className="relative text-center">
+    <div className="min-h-screen flex flex-col items-center justify-center text-center px-6">
 
-<div className="absolute inset-0 blur-3xl bg-blue-500/10 rounded-full"></div>
+      {/* Name */}
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-5xl md:text-6xl font-bold tracking-tight text-white hover:tracking-wide transition-all duration-500"
+      >
+        Aryan Mudhole
+      </motion.h1>
+      
 
+      {/* Headline */}
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="mt-6 text-2xl md:text-3xl font-medium text-gray-300 max-w-3xl"
+      >
+        Implementing machine learning  
+        for financial decision systems.
+      </motion.h2>
 
-<h1 className="relative text-5xl font-bold">
-Hi, I'm Aryan
-</h1>
+      {/* Subtext */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="mt-6 text-sm text-gray-500 space-y-1"
+      >
+        <p>Master of Information Systems</p>
+        <p>Applied modeling • Regression logic • Business impact</p>
+      </motion.div>
 
-<p className="text-gray-400 mt-3">
-Building data-driven systems & intelligent products
-</p>
+      {/* Buttons */}
+      <motion.div
+  initial={{ opacity: 0, y: 15 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.9 }}
+  className="mt-10 flex gap-6"
+>
+  <a
+    href="#work"
+    className="px-6 py-3 bg-white text-black rounded-md text-sm font-medium hover:opacity-90 transition"
+  >
+    View Applied Work
+  </a>
 
-</div>
-</section>
+  <button
+    onClick={() => setOpen(prev => !prev)}
+    className="px-6 py-3 border border-white text-white rounded-md text-sm font-medium hover:bg-white hover:text-black transition"
+  >
+    Evaluate Candidate
+  </button>
+</motion.div>
+    </div>
   );
 }
