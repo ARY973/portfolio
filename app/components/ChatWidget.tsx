@@ -77,7 +77,7 @@ export default function ChatWidget({
     <>
       {/* Floating Button */}
       <button
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => setOpen((prev: boolean) => !prev)}
         className="fixed bottom-6 right-6 z-50 bg-black text-white px-4 py-2 rounded-full shadow-lg"
       >
         Evaluate Candidate
