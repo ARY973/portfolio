@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { projectCompilationEventsSubscribe } from "next/dist/build/swc/generated-native";
 
 type Snowflake = {
   left: string;
@@ -10,6 +12,9 @@ type Snowflake = {
 
 export default function SnowSection() {
   const [flakes, setFlakes] = useState<Snowflake[]>([]);
+
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 1000], [0, 150]);
 
   useEffect(() => {
     const generated = Array.from({ length: 80 }).map(() => ({
@@ -21,11 +26,13 @@ export default function SnowSection() {
     setFlakes(generated);
   }, []);
 
-  // ⛔ Prevent server/client mismatch
   if (flakes.length === 0) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <motion.div
+      style={{ y }}
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+    >
       {flakes.map((flake, i) => (
         <span
           key={i}
@@ -37,6 +44,6 @@ export default function SnowSection() {
           }}
         />
       ))}
-    </div>
+    </motion.div>
   );
 }

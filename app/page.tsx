@@ -8,9 +8,11 @@ import About from "./components/About";
 import DcExperience from "./components/DcExperience";
 import DataPhilosophy from "./components/DataPhilosophy";
 import Projects from "./components/projects";
+import { motion, useScroll } from "framer-motion";
 
 export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
 
   return (
     <main className="relative">
@@ -21,6 +23,10 @@ export default function Home() {
       <DataPhilosophy />
       <Projects />
       <ChatWidget open={chatOpen} setOpen={setChatOpen} />
+      <motion.div
+  style={{ scaleX: scrollYProgress }}
+  className="fixed top-0 left-0 right-0 h-[2px] bg-white origin-left z-50"
+/>
     </main>
   );
 }

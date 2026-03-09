@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
+    id: "loan-risk",
     category: "Financial Analytics",
     title: "FinTech Loan Default Risk Modeling",
     description:
@@ -13,6 +14,7 @@ const projects = [
     linkLabel: "View Project",
   },
   {
+    id: "f1-analytics",
     category: "Machine Learning",
     title: "Formula 1 Performance Analytics",
     description:
@@ -22,6 +24,7 @@ const projects = [
     linkLabel: "View Project",
   },
   {
+    id: "housing-price",
     category: "Machine Learning",
     title: "Housing Price Prediction",
     description:
@@ -31,6 +34,22 @@ const projects = [
     linkLabel: "View Project",
   },
 ];
+
+/* 🔥 Stagger container controls child reveal */
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+/* 🔥 Individual card animation */
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function Projects() {
   return (
@@ -49,20 +68,23 @@ export default function Projects() {
             Projects
           </h2>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto">
-            A selection of machine learning projects focused on real-world data and
-            predictive modeling.
+            A selection of machine learning projects focused on real-world data and predictive modeling.
           </p>
         </motion.div>
 
         {/* CARDS */}
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
+        <motion.div
+          className="grid gap-10 md:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {projects.map((project) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              key={project.id}
+              variants={cardVariants}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="
                 relative
                 bg-white/10 backdrop-blur-md
@@ -90,7 +112,6 @@ export default function Projects() {
                 to-transparent
               " />
 
-              {/* CONTENT */}
               <p className="text-sm text-white/60 mb-1 relative z-10">
                 {project.category}
               </p>
@@ -103,11 +124,10 @@ export default function Projects() {
                 {project.description}
               </p>
 
-              {/* TECH STACK */}
               <div className="mt-4 flex flex-wrap gap-2 relative z-10">
-                {project.tech.map((t, idx) => (
+                {project.tech.map((techItem) => (
                   <span
-                    key={idx}
+                    key={techItem}
                     className="
                       text-xs
                       bg-white/20
@@ -117,12 +137,11 @@ export default function Projects() {
                       border border-white/20
                     "
                   >
-                    {t}
+                    {techItem}
                   </span>
                 ))}
               </div>
 
-              {/* LINK */}
               <a
                 href={project.link}
                 className="
@@ -140,7 +159,7 @@ export default function Projects() {
               </a>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
