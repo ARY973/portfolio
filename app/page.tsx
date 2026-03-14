@@ -1,6 +1,4 @@
 "use client";
-
-import ThreeScene from "./components/ThreeScene";
 import { useState } from "react";
 import Hero from "./components/Hero";
 import ChatWidget from "./components/ChatWidget";
@@ -15,12 +13,7 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
 
   return (
-    <main className="relative overflow-x-hidden">
-
-      {/* GLOBAL GALAXY BACKGROUND */}
-      <div className="fixed inset-0 -z-10">
-        <ThreeScene />
-      </div>
+    <main className="relative overflow-x-hidden min-h-screen">
 
       {/* CONTENT */}
       <Hero setOpen={setChatOpen} />

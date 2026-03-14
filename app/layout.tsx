@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import ThreeScene from "./components/ThreeScene";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="relative antialiased">
+         {/* 🌌 GLOBAL GALAXY BACKGROUND */}
+        <ThreeScene />
 
         {/* 📄 PAGE CONTENT — THIS WAS MISSING */}
         <main className="relative z-20">
@@ -35,7 +37,7 @@ export default function RootLayout({
         
 
         {/* 👣 FOOTER */}
-        <footer className="py-20 flex flex-col items-center gap-6 text-gray-500">
+        <footer className="relative z-20 py-20 flex flex-col items-center gap-6 text-gray-500">
           <div className="flex gap-6 items-center">
 
             {/* GitHub */}
@@ -69,7 +71,7 @@ export default function RootLayout({
               href="/resume/Ryan_Mudhole_Resume_Updated.docx"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 font-semibold hover:border-black hover:text-black transition"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 font-semibold hover:border-black hover:text-white transition"
             >
               R
             </a>
