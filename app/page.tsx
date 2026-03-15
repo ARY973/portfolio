@@ -7,6 +7,8 @@ import DcExperience from "./components/DcExperience";
 import DataPhilosophy from "./components/DataPhilosophy";
 import Projects from "./components/projects";
 import { motion, useScroll } from "framer-motion";
+import ConnectSection from "./components/ConnectSection";
+import ModelEvaluation from "./components/ModelEvaluation";
 
 export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
@@ -21,6 +23,8 @@ export default function Home() {
       <DcExperience />
       <DataPhilosophy />
       <Projects />
+      <ModelEvaluation />
+      <ConnectSection />
 
       {/* CHAT */}
       <ChatWidget open={chatOpen} setOpen={setChatOpen} />
