@@ -71,27 +71,25 @@ export default function ModelEvaluation() {
 
         {/* Feature Importance */}
         <motion.div
-          whileHover={{ scale: 1.03 }}
-          className="bg-slate-800/60 backdrop-blur-lg border border-slate-700 rounded-xl p-6 text-left hover:border-blue-400 transition"
-        >
-          <h3 className="text-lg font-semibold text-white mb-2">
-            Feature Importance
-          </h3>
+  whileHover={{ scale: 1.03 }}
+  className="bg-slate-800/60 backdrop-blur-lg border border-slate-700 rounded-xl p-6 text-left hover:border-blue-400 transition"
+>
 
-          <p className="text-gray-400 text-sm mb-4">
-            Displays the most influential variables impacting the loan default prediction model.
-          </p>
+<h3 className="text-lg font-semibold text-white mb-2">
+F1 Performance Insight
+</h3>
 
-          <img
-            src="/images/feature_importance.png"
-            alt="Feature Importance"
-            className="rounded-lg border border-slate-700 mb-4"
-          />
+<p className="text-gray-400 text-sm mb-4">
+Analysis of the relationship between driver age and podium finishes using Formula 1 race data.
+</p>
 
-          <p className="text-blue-400 text-sm">
-            Top Predictors: Credit Score, Income, Loan Amount
-          </p>
-        </motion.div>
+<img
+  src="/images/f1_driver_age_podium.png"
+  alt="Driver Age vs Podium Probability"
+  className="rounded-lg border border-slate-700"
+/>
+
+</motion.div>
 
         {/* SHAP Summary Plot */}
         <motion.div
