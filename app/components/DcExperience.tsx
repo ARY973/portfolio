@@ -50,6 +50,10 @@ export default function DcExperience() {
             Washington DC Leadership Experience
           </h2>
 
+          <p className="text-white/50 text-sm uppercase tracking-widest mb-2">
+            USU Huntsman School of Business · Leadership Program · Oct 2025
+          </p>
+
           <p className="text-white/80 leading-relaxed">
             I have tears while writing this. I never imagined that I would be gifted
             with so many experiences, lessons, and relationships in a single year.

@@ -33,6 +33,16 @@ const projects = [
     link: "/projects/housing-price",
     linkLabel: "View Project",
   },
+   {
+  id: "trading-pipeline",
+  category: "ML Engineering · FinTech",
+  title: "AI-Powered Stock Trading Pipeline",
+  description:
+    "End-to-end trading system on AWS EC2 — reads SEC 10-K filings via EDGAR, scores sentiment with Groq Llama 3, generates BUY/SELL signals via XGBoost, and executes paper trades on Alpaca automatically every weekday at 9am ET.",
+  tech: ["Python", "XGBoost", "AWS EC2", "Groq Llama 3", "SEC EDGAR", "Alpaca API"],
+  link: "/projects/trading-pipeline",
+  linkLabel: "View Project",
+},
 ];
 
 /* 🔥 Stagger container controls child reveal */

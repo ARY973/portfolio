@@ -33,8 +33,7 @@ export default function Hero({
         transition={{ duration: 0.8, delay: 0.3 }}
         className="mt-6 text-2xl md:text-3xl font-medium text-gray-300 max-w-3xl"
       >
-        Implementing machine learning  
-        for financial decision systems.
+        "Turning data into decisions — with the depth of machine learning."
       </motion.h2>
 
       {/* Subtext */}
@@ -44,8 +43,8 @@ export default function Hero({
         transition={{ duration: 0.8, delay: 0.6 }}
         className="mt-6 text-sm text-gray-500 space-y-1"
       >
-        <p>Master of Information Systems</p>
-        <p>Applied modeling • Regression logic • Business impact</p>
+        <p>Data Analyst · MS Information Systems @ USU</p>
+        <p>Python · SQL · Power BI · Machine Learning</p>
       </motion.div>
 
       {/* Buttons */}

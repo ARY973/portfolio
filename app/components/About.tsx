@@ -36,20 +36,24 @@ export default function About() {
   </h2>
 
   <p className="mt-4 text-slate-200 text-lg leading-relaxed mb-4">
-    I’m Aryan, and I’m glad you’re here. I began my journey with a
-    Bachelor’s degree in Information Technology and early professional
-    experience working with Power BI analytics and SAP MM in India.
-  </p>
+  I'm Aryan — a Data Analyst and MS Information Systems student at Utah 
+  State University's Jon M. Huntsman School of Business, where I also 
+  serve as President of the USU AI Club.
+</p>
 
-  <p className="text-slate-200 text-lg leading-relaxed mb-4">
-    Wanting to deepen my technical depth and gain global exposure, I moved
-    to the United States to pursue a Master’s in Information Systems.
-  </p>
+<p className="text-slate-200 text-lg leading-relaxed mb-4">
+  I've built my foundation across two data analyst roles — developing 
+  Power BI dashboards at Medikart Pharmaceutical and building data 
+  infrastructure for community justice programs at the USU Transforming 
+  Communities Institute. Before that, hands-on experience with SAP MM 
+  at Tata Motors.
+</p>
 
-  <p className="text-slate-200 text-lg leading-relaxed">
-    My long-term goal is to work at the intersection of data, machine
-    learning, and finance—helping teams make informed, strategic decisions.
-  </p>
+<p className="text-slate-200 text-lg leading-relaxed">
+  My master's coursework in Advanced ML and FinTech has pushed me deeper 
+  — XGBoost classifiers, predictive pipelines, financial analytics systems. 
+  I bring that statistical depth into how I think about every data problem.
+</p>
 </div>
       </motion.div>
     </section>
