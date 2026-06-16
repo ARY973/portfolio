@@ -6,6 +6,7 @@ import About from "./components/About";
 import DcExperience from "./components/DcExperience";
 import DataPhilosophy from "./components/DataPhilosophy";
 import Projects from "./components/projects";
+import ExperienceTeaser from "./components/ExperienceTeaser";
 import { motion, useScroll } from "framer-motion";
 import ConnectSection from "./components/ConnectSection";
 import ModelEvaluation from "./components/ModelEvaluation";
@@ -23,6 +24,7 @@ export default function Home() {
       <DcExperience />
       <DataPhilosophy />
       <Projects />
+      <ExperienceTeaser />
       <ModelEvaluation />
       <ConnectSection />
 
