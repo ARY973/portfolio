@@ -4,48 +4,47 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
-    id: "loan-risk",
-    category: "Financial Analytics",
-    title: "FinTech Loan Default Risk Modeling",
+    id: "trading-pipeline",
+    category: "Product Build · FinTech · ML Engineering",
+    title: "AI-Powered Stock Trading System — 0 to 1",
     description:
-      "Built classification models to predict loan default probability using cross-validation, feature engineering, and model optimization.",
-    tech: ["Python", "XGBoost", "Scikit-learn", "FinTech"],
+      "Identified a gap in retail investor decision-making, defined success metrics, and shipped an end-to-end automated pipeline on AWS EC2 — integrating SEC 10-K filings via EDGAR, LLM sentiment scoring via Groq Llama 3, quantitative signals (RSI, P/E, momentum), XGBoost predictions, and automated paper trade execution via Alpaca API. Daily automated execution with logging and error handling.",
+    tech: ["Python", "XGBoost", "AWS EC2", "Groq Llama 3", "SEC EDGAR", "Alpaca API"],
+    link: "/projects/trading-pipeline",
+    linkLabel: "View Project",
+  },
+  {
+    id: "loan-risk",
+    category: "FinTech · Data Product",
+    title: "FinTech Credit Risk — From Data to Business Decision",
+    description:
+      "Built ensemble ML models to predict loan default probability using feature engineering, cross-validation, ROC-AUC, and SHAP analysis. Framed outputs as actionable credit risk recommendations for non-technical stakeholders — bridging technical model output and real business decision-making.",
+    tech: ["Python", "XGBoost", "Scikit-learn", "SHAP", "FinTech"],
     link: "/projects/loan-default",
     linkLabel: "View Project",
   },
   {
-    id: "f1-analytics",
-    category: "Machine Learning",
-    title: "Formula 1 Performance Analytics",
-    description:
-      "Analyzed Formula 1 race performance data to uncover patterns in lap consistency, race strategy, and driver performance.",
-    tech: ["Python", "Pandas", "Data Analysis"],
-    link: "/projects/f1-analysis",
-    linkLabel: "View Project",
-  },
-  {
     id: "housing-price",
-    category: "Machine Learning",
-    title: "Housing Price Prediction",
+    category: "Machine Learning · Market Intelligence",
+    title: "Housing Market Intelligence — 335 US Cities",
     description:
-      "Developed regression models to predict housing prices using structured datasets and feature engineering.",
-    tech: ["Python", "Regression", "Machine Learning"],
+      "Integrated multi-source socio-economic datasets across 335 US cities into a unified analytical model. Identified pricing patterns, growth signals, and investment insights — presented as a clear, actionable data narrative rather than raw model output.",
+    tech: ["Python", "Regression Modeling", "Pandas", "Data Visualization"],
     link: "/projects/housing-price",
     linkLabel: "View Project",
   },
-   {
-  id: "trading-pipeline",
-  category: "ML Engineering · FinTech",
-  title: "AI-Powered Stock Trading Pipeline",
-  description:
-    "End-to-end trading system on AWS EC2 — reads SEC 10-K filings via EDGAR, scores sentiment with Groq Llama 3, generates BUY/SELL signals via XGBoost, and executes paper trades on Alpaca automatically every weekday at 9am ET.",
-  tech: ["Python", "XGBoost", "AWS EC2", "Groq Llama 3", "SEC EDGAR", "Alpaca API"],
-  link: "/projects/trading-pipeline",
-  linkLabel: "View Project",
-},
+  {
+    id: "f1-analytics",
+    category: "Sports Analytics · Machine Learning",
+    title: "Formula 1 Performance Analytics",
+    description:
+      "Analyzed Formula 1 race performance data to surface patterns in lap consistency, race strategy, and driver performance across seasons. Translated complex motorsport data into clear competitive insights.",
+    tech: ["Python", "Pandas", "Data Analysis", "Visualization"],
+    link: "/projects/f1-analysis",
+    linkLabel: "View Project",
+  },
 ];
 
-/* 🔥 Stagger container controls child reveal */
 const containerVariants = {
   hidden: {},
   visible: {
@@ -55,7 +54,6 @@ const containerVariants = {
   },
 };
 
-/* 🔥 Individual card animation */
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 },
@@ -78,13 +76,14 @@ export default function Projects() {
             Projects
           </h2>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto">
-            A selection of machine learning projects focused on real-world data and predictive modeling.
+            End-to-end product builds and data systems — from problem identification
+            to shipped solution.
           </p>
         </motion.div>
 
         {/* CARDS */}
         <motion.div
-          className="grid gap-10 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-10 md:grid-cols-2 lg:grid-cols-2"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

@@ -33,7 +33,7 @@ export default function Hero({
         transition={{ duration: 0.8, delay: 0.3 }}
         className="mt-6 text-2xl md:text-3xl font-medium text-gray-300 max-w-3xl"
       >
-        "Turning data into decisions — with the depth of machine learning."
+        Building data products at the intersection of AI and business.
       </motion.h2>
 
       {/* Subtext */}
@@ -43,8 +43,8 @@ export default function Hero({
         transition={{ duration: 0.8, delay: 0.6 }}
         className="mt-6 text-sm text-gray-500 space-y-1"
       >
-        <p>Data Analyst · MS Information Systems @ USU</p>
-        <p>Python · SQL · Power BI · Machine Learning</p>
+        <p>Product & Data · MS Information Systems @ USU Huntsman</p>
+        <p>Python · SQL · Machine Learning · ETL Pipelines</p>
       </motion.div>
 
       {/* Buttons */}
@@ -58,7 +58,7 @@ export default function Hero({
           href="#work"
           className="px-6 py-3 bg-white text-black rounded-md text-sm font-medium hover:opacity-90 transition"
         >
-          View Applied Work
+          View My Work
         </a>
 
         <button
