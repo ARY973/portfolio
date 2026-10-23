@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ThreeScene from "./ThreeScene";
 
 export default function Hero({
   setOpen,
@@ -10,11 +9,6 @@ export default function Hero({
 }) {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
-
-      {/* 3D BACKGROUND */}
-      <div className="absolute inset-0 -z-10">
-        <ThreeScene />
-      </div>
 
       {/* Name */}
       <motion.h1
@@ -43,7 +37,7 @@ export default function Hero({
         transition={{ duration: 0.8, delay: 0.6 }}
         className="mt-6 text-sm text-gray-500 space-y-1"
       >
-        <p>Product & Data · MS Information Systems @ USU Huntsman</p>
+        <p>Product & Data · MMIS @ USU Huntsman</p>
         <p>Python · SQL · Machine Learning · ETL Pipelines</p>
       </motion.div>
 

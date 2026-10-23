@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Experience() {
   const experiences = [
     {
@@ -109,9 +111,9 @@ export default function Experience() {
 
       {/* Back link */}
       <div className="mt-16">
-        <a href="/" className="text-blue-300 hover:text-blue-200 text-sm">
+        <Link href="/" className="text-blue-300 hover:text-blue-200 text-sm">
           ← Back to Home
-        </a>
+        </Link>
       </div>
     </main>
   );

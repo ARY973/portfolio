@@ -36,9 +36,9 @@ export default function About() {
           </h2>
 
           <p className="mt-4 text-slate-200 text-lg leading-relaxed mb-4">
-            I&apos;m Aryan — a product-minded technologist and MS Information Systems
-            student at Utah State University&apos;s Jon M. Huntsman School of Business,
-            where I also serve as President of the USU AI Club.
+            I&apos;m Aryan — a product-minded technologist and MMIS candidate at
+            Utah State University&apos;s Jon M. Huntsman School of Business, and past
+            President of the USU AI Club.
           </p>
 
           <p className="text-slate-200 text-lg leading-relaxed mb-4">

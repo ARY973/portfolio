@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
  export const metadata: Metadata = {
   title: "Aryan Mudhole | Data Analyst & ML",
-  description: "Portfolio of Aryan Mudhole — Data Analyst, MS Information Systems at Utah State University(Huntsman School of Business). Python, SQL, Power BI, Machine Learning.",
+  description: "Portfolio of Aryan Mudhole — Data Analyst, MMIS candidate at Utah State University's Jon M. Huntsman School of Business. Python, SQL, Power BI, Machine Learning.",
 };
 
 export default function RootLayout({
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="relative antialiased">
          {/* 🌌 GLOBAL GALAXY BACKGROUND */}
         <ThreeScene />

@@ -7,7 +7,7 @@ export default function ConnectSection() {
     <section className="mt-32 flex flex-col items-center text-center">
 
       <h2 className="text-3xl font-semibold text-white mb-4">
-        Let's Connect
+        Let&apos;s Connect
       </h2>
 
       <p className="text-gray-400 mb-12">
@@ -123,6 +123,8 @@ transition flex flex-col items-center text-center group overflow-hidden"
   <div className="h-[420px] w-full overflow-hidden border border-slate-700 rounded-md mb-4">
     <iframe
       src="/resume/Aryan_resume_1.pdf"
+      title="Aryan Mudhole resume"
+      loading="lazy"
       className="w-full h-full"
     />
   </div>

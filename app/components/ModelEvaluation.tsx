@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function ModelEvaluation() {
@@ -33,10 +34,13 @@ export default function ModelEvaluation() {
             It highlights true positives, true negatives, false positives, and false negatives.
           </p>
 
-          <img
+          <Image
             src="/images/confusion_matrix.png"
             alt="Confusion Matrix"
-            className="rounded-lg border border-slate-700 mb-4"
+            width={1521}
+            height={1361}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="rounded-lg border border-slate-700 mb-4 h-auto w-full"
           />
 
           <p className="text-blue-400 text-sm">
@@ -54,14 +58,17 @@ export default function ModelEvaluation() {
           </h3>
 
           <p className="text-gray-400 text-sm mb-4">
-            Evaluates the model's ability to distinguish between borrowers who will default
+            Evaluates the model&apos;s ability to distinguish between borrowers who will default
             and those who will not.
           </p>
 
-          <img
+          <Image
             src="/images/roc_curve.png"
             alt="ROC Curve"
-            className="rounded-lg border border-slate-700 mb-4"
+            width={2074}
+            height={1638}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="rounded-lg border border-slate-700 mb-4 h-auto w-full"
           />
 
           <p className="text-blue-400 text-sm">
@@ -83,11 +90,14 @@ F1 Performance Insight
 Analysis of the relationship between driver age and podium finishes using Formula 1 race data.
 </p>
 
-<img
-  src="/images/f1_driver_age_podium.png"
-  alt="Driver Age vs Podium Probability"
-  className="rounded-lg border border-slate-700"
-/>
+<Image
+            src="/images/f1_driver_age_podium.png"
+            alt="Driver Age vs Podium Probability"
+            width={2548}
+            height={1638}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="rounded-lg border border-slate-700 h-auto w-full"
+          />
 
 </motion.div>
 
@@ -105,10 +115,13 @@ Analysis of the relationship between driver age and podium finishes using Formul
             SHAP values help interpret the impact of each variable on default risk.
           </p>
 
-          <img
+          <Image
             src="/images/shap_summary.png"
             alt="SHAP Summary"
-            className="rounded-lg border border-slate-700 mb-4"
+            width={2328}
+            height={1857}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="rounded-lg border border-slate-700 mb-4 h-auto w-full"
           />
 
           <p className="text-blue-400 text-sm">
