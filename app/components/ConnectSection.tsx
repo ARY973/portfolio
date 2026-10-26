@@ -122,7 +122,7 @@ transition flex flex-col items-center text-center group overflow-hidden"
 
   <div className="h-[420px] w-full overflow-hidden border border-slate-700 rounded-md mb-4">
     <iframe
-      src="/resume/Aryan_resume_1.pdf"
+      src="/resume/Aryan_Mudhole_Resume.pdf"
       title="Aryan Mudhole resume"
       loading="lazy"
       className="w-full h-full"
@@ -130,7 +130,7 @@ transition flex flex-col items-center text-center group overflow-hidden"
   </div>
 
   <a
-    href="/resume/Aryan_resume_1.pdf"
+    href="/resume/Aryan_Mudhole_Resume.pdf"
     target="_blank"
     className="text-blue-400 text-sm"
   >

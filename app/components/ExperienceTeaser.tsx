@@ -8,18 +8,21 @@ export default function ExperienceTeaser() {
         Experience
       </h2>
       <p className="text-white/60 text-center mb-12 max-w-xl mx-auto">
-        From enterprise SAP systems at Tata Motors to building data infrastructure
-        at USU — every role has shaped how I think about data and impact.
+        Three concurrent roles at USU — a justice-data pipeline, a Meals on Wheels
+        delivery programme, and teaching the pipeline-engineering course — on top of
+        earlier enterprise work in Pune.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
         {[
-          { role: "Data Analyst", company: "USU Transforming Communities Institute", period: "Apr 2026 — Present", current: true },
+          { role: "Graduate Data Analyst", company: "USU Transforming Communities Institute", period: "Apr 2026 — Present", current: true },
+          { role: "Data Analyst", company: "Meals on Wheels, Logan UT", period: "Aug 2026 — Present", current: true },
+          { role: "Teaching Assistant", company: "DATA 5330/6330 Data Pipeline Engineering", period: "Sep 2026 — Present", current: true },
           { role: "Teaching Assistant", company: "Utah State University · Cloud Computing", period: "Dec 2025 — Apr 2026", current: false },
-          { role: "SAP MM Consultant", company: "Tata Motors", period: "Jun 2024 — Aug 2024", current: false },
-          { role: "BI Developer", company: "Medikart Pharmaceutical", period: "Jan 2024 — Mar 2024", current: false },
+          { role: "SAP MM Intern", company: "Tata Motors, Pune", period: "Jun 2024 — Aug 2024", current: false },
+          { role: "Power BI Analyst", company: "Medikart Pharmaceutical, Pune", period: "Jan 2024 — Mar 2024", current: false },
         ].map((exp) => (
-          <div key={exp.role} className="bg-white/5 border border-white/10 rounded-xl p-5 flex justify-between items-start">
+          <div key={`${exp.role}-${exp.period}`} className="bg-white/5 border border-white/10 rounded-xl p-5 flex justify-between items-start">
             <div>
               <p className="text-white font-medium">{exp.role}</p>
               <p className="text-white/50 text-sm mt-1">{exp.company}</p>

@@ -121,7 +121,7 @@ export default function SiteNav() {
             </Link>
 
             <a
-              href="/resume/Aryan_resume_1.pdf"
+              href="/resume/Aryan_Mudhole_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm px-3 py-1.5 rounded-md bg-white text-black font-medium hover:opacity-90 transition"
@@ -168,7 +168,7 @@ export default function SiteNav() {
               Beyond the work
             </Link>
             <a
-              href="/resume/Aryan_resume_1.pdf"
+              href="/resume/Aryan_Mudhole_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-blue-300"
