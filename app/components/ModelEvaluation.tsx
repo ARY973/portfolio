@@ -30,7 +30,7 @@ export default function ModelEvaluation() {
           </h3>
 
           <p className="text-gray-400 text-sm mb-4">
-            Visualizes the classification performance of the loan default prediction model.
+            Classification performance of the logistic-regression benchmark on a held-out test set.
             It highlights true positives, true negatives, false positives, and false negatives.
           </p>
 
@@ -58,8 +58,8 @@ export default function ModelEvaluation() {
           </h3>
 
           <p className="text-gray-400 text-sm mb-4">
-            Evaluates the model&apos;s ability to distinguish between borrowers who will default
-            and those who will not.
+            Separability between applications the lender approved and those it
+            rejected — rejection standing in for default risk.
           </p>
 
           <Image
@@ -72,7 +72,7 @@ export default function ModelEvaluation() {
           />
 
           <p className="text-blue-400 text-sm">
-            AUC Score: 0.94
+            AUC Score: 0.97
           </p>
         </motion.div>
 
@@ -112,7 +112,7 @@ Analysis of the relationship between driver age and podium finishes using Formul
 
           <p className="text-gray-400 text-sm mb-4">
             Explains how individual features contribute to model predictions.
-            SHAP values help interpret the impact of each variable on default risk.
+            SHAP values show how much each variable moves an individual decision.
           </p>
 
           <Image

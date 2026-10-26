@@ -18,8 +18,8 @@ const projects = [
     category: "FinTech · Data Product",
     title: "FinTech Credit Risk — From Data to Business Decision",
     description:
-      "Built ensemble ML models to predict loan default probability using feature engineering, cross-validation, ROC-AUC, and SHAP analysis. Framed outputs as actionable credit risk recommendations for non-technical stakeholders — bridging technical model output and real business decision-making.",
-    tech: ["Python", "XGBoost", "Scikit-learn", "SHAP", "FinTech"],
+      "Benchmarked four models — logistic regression, random forest, gradient boosting and an MLP — to score borrower risk for a micro-lender. The dataset carries an approve/reject label rather than an observed default flag, so rejection is used as a proxy for default risk and the limitation is stated up front. A no-CIBIL stress test showed accuracy collapsing from 0.99 to 0.61 without a credit score, which drove the recommendation: don't score credit-invisible borrowers on this feature set alone.",
+    tech: ["Python", "Gradient Boosting", "Random Forest", "Scikit-learn", "SHAP"],
     link: "/projects/loan-default",
     linkLabel: "View Project",
   },
