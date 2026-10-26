@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function About() {
   return (
-    <section className="py-24 px-6 flex justify-center">
+    <section id="about" className="py-24 px-6 flex justify-center scroll-mt-20">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}

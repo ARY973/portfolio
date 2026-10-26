@@ -1,44 +1,35 @@
 "use client";
-import { useState } from "react";
+
 import Hero from "./components/Hero";
-import ChatWidget from "./components/ChatWidget";
 import About from "./components/About";
-import DcExperience from "./components/DcExperience";
-import DataPhilosophy from "./components/DataPhilosophy";
 import Projects from "./components/projects";
 import ExperienceTeaser from "./components/ExperienceTeaser";
-import { motion, useScroll } from "framer-motion";
-import ConnectSection from "./components/ConnectSection";
-import ModelEvaluation from "./components/ModelEvaluation";
 import LoanModelExplorer from "./components/LoanModelExplorer";
+import ModelEvaluation from "./components/ModelEvaluation";
+import ConnectSection from "./components/ConnectSection";
+import { motion, useScroll } from "framer-motion";
 
 export default function Home() {
-  const [chatOpen, setChatOpen] = useState(false);
   const { scrollYProgress } = useScroll();
 
   return (
     <main className="relative overflow-x-hidden min-h-screen">
-
-      {/* CONTENT */}
-      <Hero setOpen={setChatOpen} />
-      <About />
-      <DcExperience />
-      <DataPhilosophy />
+      {/*
+        Section order follows how a recruiter reads: what he built, proof it
+        works, where he's worked, who he is, how to reach him.
+      */}
+      <Hero />
       <Projects />
-      <ExperienceTeaser />
       <LoanModelExplorer />
       <ModelEvaluation />
+      <ExperienceTeaser />
+      <About />
       <ConnectSection />
 
-      {/* CHAT */}
-      <ChatWidget open={chatOpen} setOpen={setChatOpen} />
-
-      {/* SCROLL PROGRESS BAR */}
       <motion.div
         style={{ scaleX: scrollYProgress }}
-        className="fixed top-0 left-0 right-0 h-[2px] bg-white origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-blue-400 origin-left z-[60]"
       />
-
     </main>
   );
 }

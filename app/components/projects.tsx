@@ -61,7 +61,7 @@ const cardVariants = {
 
 export default function Projects() {
   return (
-    <section id="work" className="relative py-32 px-6">
+    <section id="work" className="relative py-32 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
         {/* HEADER */}

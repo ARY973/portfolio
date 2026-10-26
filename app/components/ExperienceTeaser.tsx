@@ -1,6 +1,6 @@
 export default function ExperienceTeaser() {
   return (
-    <section className="max-w-5xl mx-auto px-6 py-24">
+    <section id="experience" className="max-w-5xl mx-auto px-6 py-24 scroll-mt-20">
       <p className="text-sm text-white/50 uppercase tracking-widest mb-3 text-center">
         Career Journey
       </p>

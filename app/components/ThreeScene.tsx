@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import NeuralNetwork from "./NeuralNetwork";
@@ -10,8 +11,27 @@ export default function ThreeScene() {
   const isMobile = useIsMobile();
   const reducedMotion = usePrefersReducedMotion();
 
+  // The scene is atmosphere for the hero, not a backdrop for every section.
+  // Past the first screen it fades back so content carries the page.
+  const [dim, setDim] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setDim(window.scrollY > window.innerHeight * 0.6);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Catch a page restored mid-scroll without writing state during the
+    // effect body itself.
+    const id = requestAnimationFrame(onScroll);
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none">
+    <div
+      className="fixed inset-0 -z-10 pointer-events-none transition-opacity duration-700"
+      style={{ opacity: dim ? 0.22 : 1 }}
+      aria-hidden="true"
+    >
       <Canvas
         camera={{ position: [0, 0, 6] }}
         style={{ width: "100vw", height: "100vh" }}

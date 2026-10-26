@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
-  MODEL,
   MODEL_METRICS,
   LABELS,
   meanOf,
@@ -101,7 +100,7 @@ export default function LoanModelExplorer() {
   const reset = () => setValues(START);
 
   return (
-    <section id="model" className="py-24 px-6">
+    <section id="model" className="py-24 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
         <p className="text-blue-400 text-sm mb-2">Interactive · Real model</p>
         <h2 className="text-3xl font-semibold text-white mb-3">
@@ -109,9 +108,8 @@ export default function LoanModelExplorer() {
         </h2>
         <p className="text-gray-400 max-w-2xl mb-10">
           These are the actual fitted weights from my loan-approval classifier —
-          logistic regression on {(
-            MODEL_METRICS.trainSize + MODEL_METRICS.testSize
-          ).toLocaleString()}{" "}
+          logistic regression on{" "}
+          {(MODEL_METRICS.trainSize + MODEL_METRICS.testSize).toLocaleString()}{" "}
           applications, {(MODEL_METRICS.accuracy * 100).toFixed(1)}% accuracy and{" "}
           {MODEL_METRICS.rocAuc.toFixed(2)} ROC-AUC on a held-out test set. Move a
           control and watch the decision change. Every feature you don&apos;t

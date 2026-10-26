@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThreeScene from "./components/ThreeScene";
+import SiteNav from "./components/SiteNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,8 +30,10 @@ export default function RootLayout({
          {/* 🌌 GLOBAL GALAXY BACKGROUND */}
         <ThreeScene />
 
+        <SiteNav />
+
         {/* 📄 PAGE CONTENT — THIS WAS MISSING */}
-        <main className="relative z-20">
+        <main id="main" className="relative z-20 pt-16">
           {children}
         </main>
 

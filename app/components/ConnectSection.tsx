@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function ConnectSection() {
   return (
-    <section className="mt-32 flex flex-col items-center text-center">
+    <section id="contact" className="mt-32 flex flex-col items-center text-center scroll-mt-20">
 
       <h2 className="text-3xl font-semibold text-white mb-4">
         Let&apos;s Connect
