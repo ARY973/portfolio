@@ -10,6 +10,7 @@ import ExperienceTeaser from "./components/ExperienceTeaser";
 import { motion, useScroll } from "framer-motion";
 import ConnectSection from "./components/ConnectSection";
 import ModelEvaluation from "./components/ModelEvaluation";
+import LoanModelExplorer from "./components/LoanModelExplorer";
 
 export default function Home() {
   const [chatOpen, setChatOpen] = useState(false);
@@ -25,6 +26,7 @@ export default function Home() {
       <DataPhilosophy />
       <Projects />
       <ExperienceTeaser />
+      <LoanModelExplorer />
       <ModelEvaluation />
       <ConnectSection />
 
