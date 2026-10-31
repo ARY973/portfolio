@@ -23,10 +23,10 @@ const experiences: Role[] = [
     role: "Graduate Data Analyst",
     company: "Transforming Communities Institute, Utah State University",
     type: "Part-time",
-    period: "Apr 2026 — Present",
+    period: "Apr 2026 to now",
     current: true,
     story:
-      "I own the Community Justice Administration data product end to end — requirements from the Executive Director, architecture, shipping, and iterating on what comes back. The role taught me to understand the problem before reaching for the data.",
+      "I own the Community Justice Administration data product end to end: requirements from the Executive Director, then architecture, shipping, and iterating on what comes back. The role taught me to understand the problem before reaching for the data.",
     points: [
       "Built the CJA pipeline from scratch: Python extracts five Airtable tables, transforms them into one coded wide-format dataset, and delivers SPSS-ready CSVs to Box on a weekly GitHub Actions schedule.",
       "Authored the data dictionary and versioned codebooks so non-technical research staff can use the data without me in the room.",
@@ -38,7 +38,7 @@ const experiences: Role[] = [
     role: "Data Analyst, Meals on Wheels",
     company: "Logan, UT",
     type: "Part-time",
-    period: "Aug 2026 — Present",
+    period: "Aug 2026 to now",
     current: true,
     story:
       "Reporting and front-end work for a meal-delivery service where the data has a person at the end of it. Requirements come from program stakeholders rather than a spec, which means most of the job is asking the right questions first.",
@@ -49,10 +49,10 @@ const experiences: Role[] = [
     stack: ["Python", "SQL", "Front-end development", "Stakeholder requirements"],
   },
   {
-    role: "Teaching Assistant — DATA 5330/6330 Data Pipeline Engineering",
+    role: "Teaching Assistant, DATA 5330/6330 Data Pipeline Engineering",
     company: "Jon M. Huntsman School of Business, Utah State University",
     type: "Part-time",
-    period: "Sep 2026 — Present",
+    period: "Sep 2026 to now",
     current: true,
     story:
       "Supporting 27 students through pandas, PySpark, SQL, Airflow, Databricks and Delta Lake. Most of the real work is removing the setup friction that stops people before they ever reach the actual material.",
@@ -64,12 +64,12 @@ const experiences: Role[] = [
     stack: ["PySpark", "Airflow", "Databricks", "Delta Lake", "SQL", "Docker", "Azure"],
   },
   {
-    role: "Teaching Assistant — Cloud Computing",
+    role: "Teaching Assistant, Cloud Computing",
     company: "Jon M. Huntsman School of Business, Utah State University",
     type: "Seasonal",
-    period: "Dec 2025 — Apr 2026",
+    period: "Dec 2025 to Apr 2026",
     story:
-      "One of the most rewarding experiences of my academic journey. I guided students through industry-level AWS implementations — helping them understand not just the technology, but how to think with it, and pushing them to use AI as a learning tool rather than a shortcut.",
+      "One of the most rewarding experiences of my academic journey. I guided students through industry-level AWS implementations, helping them understand not just the technology but how to think with it, and pushing them to use AI as a learning tool rather than a shortcut.",
     points: [
       "Held office hours three times a week troubleshooting AWS deployments: EC2 launch templates, Application Load Balancers, Auto Scaling Groups, IAM Identity Center and Git workflows.",
       "Graded and gave written feedback on 45+ submissions per assignment, including a Redis and DynamoDB cache-aside (lazy loading) build.",
@@ -80,9 +80,9 @@ const experiences: Role[] = [
     role: "SAP MM Intern",
     company: "Tata Motors Ltd., Pune, India",
     type: "Internship",
-    period: "Jun 2024 — Aug 2024",
+    period: "Jun to Aug 2024",
     story:
-      "Working inside one of India's largest automobile companies as a fresh IT graduate was formative. I saw how an organisation at that scale handles procurement, inventory and data across thousands of moving parts — and how much rests on that data being clean.",
+      "Working inside one of India's largest automobile companies as a fresh IT graduate was formative. I saw how an organisation at that scale handles procurement, inventory and data across thousands of moving parts, and how much rests on that data being clean.",
     points: [
       "Analyzed procurement data in SAP MM to identify inefficiencies in purchasing workflows.",
     ],
@@ -92,9 +92,9 @@ const experiences: Role[] = [
     role: "Power BI Analyst",
     company: "Medikart Pharmaceutical Distribution, Pune, India",
     type: "Internship",
-    period: "Jan 2024 — Mar 2024",
+    period: "Jan to Mar 2024",
     story:
-      "My first real lesson in translating data into business language. The organisation was small, but the impact was measurable — and it taught me that clear data communication matters regardless of company size.",
+      "My first real lesson in translating data into business language. The organisation was small, but the impact was measurable, and it taught me that clear data communication matters regardless of company size.",
     points: [
       "Built automated Power BI dashboards (DAX, Power Query) that cut manual Excel reporting time by 40%.",
     ],
@@ -109,7 +109,7 @@ const leadership = [
       "Led events and brought in outside speakers, growing participation and the club's visibility. Represented the club in Washington, D.C. through USU's Covey Leadership Center.",
   },
   {
-    title: "Panelist, International Business class — Oct 2026",
+    title: "Panelist, International Business class, Oct 2026",
     detail:
       "Invited by the Huntsman School to represent India on culture and business practice between India and the U.S.",
   },
@@ -156,7 +156,7 @@ export default function Experience() {
               <div className="max-w-[62ch]">
               <h2 className="text-xl md:text-2xl mb-1">{exp.role}</h2>
               <p className="text-sm mb-5" style={{ color: "var(--ink-2)" }}>
-                {exp.company} — {exp.type}
+                {exp.company}, {exp.type}
               </p>
 
               <p className="prose-serif mb-4" style={{ color: "var(--ink-2)" }}>{exp.story}</p>

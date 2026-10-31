@@ -127,7 +127,7 @@ export default function ProjectPage() {
     <section className="max-w-3xl mx-auto px-6 py-24">
 
       <h1 className="text-4xl md:text-5xl mb-6">
-        FinTech Credit Risk — Scoring Borrowers for a Micro-Lender
+        Scoring borrowers for a micro-lender
       </h1>
 
       <p className="prose-serif max-w-[62ch] mb-6">
@@ -142,7 +142,7 @@ export default function ProjectPage() {
           On the target variable
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed">
-          This dataset labels each application approved or rejected — there is no
+          This dataset labels each application approved or rejected. There is no
           observed default flag. I treat rejection as a proxy for
           default-prone risk, which is a real limitation: approval is the
           lender&apos;s decision at origination, default is what the borrower
@@ -183,8 +183,8 @@ export default function ProjectPage() {
 
       <p className="prose-serif text-[0.95rem] max-w-[62ch] mb-10">
         Tree ensembles clearly win. I recommended gradient boosting as the
-        production scorer — near-identical to random forest but better
-        probability quality — with logistic regression kept as the
+        production scorer, near-identical to random forest but with better
+        probability quality, keeping logistic regression as the
         interpretable benchmark for audit and policy conversations.
       </p>
 
@@ -196,14 +196,14 @@ export default function ProjectPage() {
         CIBIL score dominates every model, so I retrained gradient boosting
         with it removed, to simulate a thin-file borrower with no credit
         history. Accuracy fell from <strong>0.99 to 0.607</strong>, recall to
-        0.124, ROC-AUC to 0.586 — barely better than guessing.
+        0.124, ROC-AUC to 0.586, barely better than guessing.
       </p>
 
       <p className="prose-serif max-w-[62ch] mb-10">
         That is the business answer, not the leaderboard. A micro-lender
         serving underbanked borrowers cannot score credit-invisible applicants
-        on this feature set at all. It needs alternative data — cash-flow
-        stability, rent and utility history, transaction signals — or
+        on this feature set at all. It needs alternative data such as cash-flow
+        stability, rent and utility history and transaction signals, or
         progressive lending, where small starter loans build an internal
         behavioural record.
       </p>

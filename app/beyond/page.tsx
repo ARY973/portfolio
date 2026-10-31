@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Beyond the work | Aryan Mudhole",
   description:
-    "Washington DC with the Huntsman School of Business — what a year away from home actually looked like.",
+    "Washington DC with the Huntsman School of Business, and what a year away from home actually looked like.",
 };
 
 const images = [
@@ -61,7 +61,7 @@ export default function BeyondPage() {
           >
             <Image
               src={src}
-              alt={`Washington DC, October 2025 — photo ${i + 1}`}
+              alt={`Washington DC, October 2025, photo ${i + 1}`}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover"

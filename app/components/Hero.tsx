@@ -1,3 +1,5 @@
+import LiveFeed from "./LiveFeed";
+
 const CURRENT = [
   {
     role: "Graduate Data Analyst",
@@ -28,9 +30,8 @@ export default function Hero() {
           className="prose-serif mt-7 text-xl md:text-2xl max-w-[46ch]"
           style={{ color: "var(--ink-2)" }}
         >
-          I build the data behind decisions that affect people — who gets a
-          meal, how a court counts its cases, whether a loan is worth the
-          risk.
+          I build the data behind decisions that affect people: who gets a meal,
+          how a court counts its cases, whether a loan is worth the risk.
         </p>
       </div>
 
@@ -58,7 +59,11 @@ export default function Hero() {
         ))}
       </dl>
 
-      <p className="mt-10 text-sm" style={{ color: "var(--ink-2)" }}>
+      <div className="mt-14">
+        <LiveFeed />
+      </div>
+
+      <p className="mt-12 text-sm" style={{ color: "var(--ink-2)" }}>
         MMIS candidate at Utah State University&apos;s Huntsman School of
         Business, graduating May 2027.{" "}
         <a href="#model" className="link">

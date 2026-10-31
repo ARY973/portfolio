@@ -12,7 +12,7 @@ export default function TradingPipeline() {
 
       <p className="text-[var(--ink-2)] text-lg leading-relaxed mb-10">
         An end-to-end automated trading system built for my Advanced Python 
-        course at Utah State University — deployed on AWS EC2 and running 
+        course at Utah State University, deployed on AWS EC2 and running 
         every weekday at 9am ET without manual intervention.
       </p>
 
@@ -21,7 +21,7 @@ export default function TradingPipeline() {
       <div className="space-y-4 mb-12">
         {[
           { file: "data_fetcher.py", desc: "Pulls real stock price data via yfinance and SEC 10-K filing metadata via the EDGAR API for 10 stocks: AAPL, MSFT, GOOGL, AMZN, NVDA, META, JPM, TSLA, AMD, NFLX." },
-          { file: "sentiment_analyzer.py", desc: "Fetches actual SEC filing text and sends it to Groq's Llama 3 (llama-3.3-70b-versatile) for financial sentiment scoring — returning positive/negative/neutral scores with reasoning." },
+          { file: "sentiment_analyzer.py", desc: "Fetches actual SEC filing text and sends it to Groq's Llama 3 (llama-3.3-70b-versatile) for financial sentiment scoring, returning positive, negative or neutral scores with reasoning." },
           { file: "financial_signals.py", desc: "Calculates RSI, 20/50-day moving averages, momentum, volatility, P/E ratio, revenue growth, profit margin, debt-to-equity, and return on equity." },
           { file: "ml_model.py", desc: "Trains an XGBoost classifier combining all signals to generate BUY/SELL predictions with confidence scores and feature importance rankings." },
           { file: "alpaca_trader.py", desc: "Executes paper trades on Alpaca for signals exceeding confidence thresholds via the Alpaca paper trading API." },
@@ -40,7 +40,7 @@ export default function TradingPipeline() {
         {[
           { label: "NVDA Signal", value: "BUY", sub: "73% revenue growth from AI demand" },
           { label: "TSLA Signal", value: "SELL", sub: "P/E of 363, -3.1% revenue growth" },
-          { label: "Top Feature", value: "RSI", sub: "23% importance — consistent with quant research" },
+          { label: "Top Feature", value: "RSI", sub: "23% importance, consistent with quant research" },
           { label: "Daily Output", value: "10 signals", sub: "6 BUY · 4 SELL, auto-executed" },
         ].map(({ label, value, sub }) => (
           <div key={label} className="py-4 border-b border-[var(--rule)]">
@@ -64,7 +64,7 @@ export default function TradingPipeline() {
       {/* Automation */}
       <h2 className="text-2xl md:text-3xl mb-4">Automation</h2>
       <p className="text-[var(--ink-2)] leading-relaxed mb-4">
-        The pipeline runs automatically every weekday at 9am ET via crontab on an AWS EC2 instance — no manual triggering required. Results and errors are logged to <span className="font-mono text-[var(--signal)] text-sm">cron_log.txt</span> for monitoring.
+        The pipeline runs automatically every weekday at 9am ET via crontab on an AWS EC2 instance, with no manual triggering required. Results and errors are logged to <span className="font-mono text-[var(--signal)] text-sm">cron_log.txt</span> for monitoring.
       </p>
       <div className="mono text-sm p-4 mb-12">
         0 13 * * 1-5 cd /home/ubuntu/data5500_mycode/final_project && python final_project.py

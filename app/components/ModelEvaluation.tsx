@@ -6,7 +6,7 @@ const figures = [
     w: 832,
     h: 704,
     caption:
-      "503 approvals and 279 rejections called correctly. The 44 rejections it missed are the expensive ones — a lender booking risk it meant to decline.",
+      "503 approvals and 279 rejections called correctly. The 44 rejections it missed are the expensive ones: a lender booking risk it meant to decline.",
   },
   {
     src: "/images/roc_curve.png",

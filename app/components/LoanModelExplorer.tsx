@@ -292,7 +292,7 @@ export default function LoanModelExplorer() {
       >
         Trained on a public dataset of Indian loan applications. It predicts the
         lender&apos;s approve-or-reject decision at origination, not whether a
-        borrower later defaults. Credit score dominates — a property of this
+        borrower later defaults. Credit score dominates, which is a property of this
         dataset as much as of the model, and the subject of{" "}
         <a href="/projects/loan-default" className="link">
           the stress test

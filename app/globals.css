@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* =========================================================
-   CODEBOOK — design tokens
+   CODEBOOK design tokens
 
    The site is set like a reference document: a narrow label
    column against a wide content column, precise values,
@@ -112,7 +112,7 @@ a.link:hover {
 }
 
 /* =========================================================
-   FOCUS — visible, on paper
+   FOCUS: visible, on paper
    ========================================================= */
 :focus-visible {
   outline: 2px solid var(--signal);

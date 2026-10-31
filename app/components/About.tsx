@@ -17,9 +17,9 @@ export default function About() {
           <p style={{ color: "var(--ink-2)" }}>
             What I like about data work is the part after the model. At the
             Transforming Communities Institute I own the Community Justice
-            Administration pipeline end to end — gathering requirements from
-            the Executive Director, designing it, shipping it, and writing the
-            codebooks so the research staff can use it without me. At Meals on
+            Administration pipeline end to end, from gathering requirements
+            with the Executive Director through designing it, shipping it, and
+            writing the codebooks so the research staff can use it without me. At Meals on
             Wheels the questions come from programme stakeholders rather than a
             spec, which means most of the job is working out what they actually
             need before writing anything.

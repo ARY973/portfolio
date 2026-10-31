@@ -2,7 +2,7 @@
  * The real fitted logistic-regression model from the loan-approval project.
  *
  * These are not illustrative numbers. They come from re-running the exact
- * pipeline published on /projects/loan-default — same dataset, same
+ * pipeline published on /projects/loan-default: same dataset, same
  * preprocessing, same train/test split (test_size=0.2, random_state=42,
  * stratified), same StandardScaler, same LogisticRegression. The refit
  * reproduces the project's confusion matrix cell for cell (503 / 28 / 44 / 279),
@@ -35,7 +35,7 @@ const index = (name: string) => {
   return i;
 };
 
-/** Dataset mean for a feature — the value used when a control is left alone. */
+/** Dataset mean for a feature: the value used when a control is left alone. */
 export const meanOf = (name: string) => MODEL.mean[index(name)];
 
 /**

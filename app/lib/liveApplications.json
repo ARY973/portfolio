@@ -1,0 +1,218 @@
+[
+{
+"cibil": 878,
+"income": 8400000,
+"amount": 28700000,
+"term": 14,
+"p": 0.0002,
+"actual": 0
+},
+{
+"cibil": 558,
+"income": 5200000,
+"amount": 17800000,
+"term": 18,
+"p": 0.5009,
+"actual": 0
+},
+{
+"cibil": 429,
+"income": 8100000,
+"amount": 26300000,
+"term": 4,
+"p": 0.8097,
+"actual": 0
+},
+{
+"cibil": 628,
+"income": 7500000,
+"amount": 25000000,
+"term": 18,
+"p": 0.1619,
+"actual": 0
+},
+{
+"cibil": 540,
+"income": 2500000,
+"amount": 5300000,
+"term": 10,
+"p": 0.555,
+"actual": 1
+},
+{
+"cibil": 525,
+"income": 4300000,
+"amount": 14100000,
+"term": 12,
+"p": 0.4502,
+"actual": 1
+},
+{
+"cibil": 353,
+"income": 9100000,
+"amount": 24000000,
+"term": 20,
+"p": 0.9975,
+"actual": 1
+},
+{
+"cibil": 439,
+"income": 4900000,
+"amount": 16500000,
+"term": 12,
+"p": 0.8625,
+"actual": 1
+},
+{
+"cibil": 381,
+"income": 8300000,
+"amount": 30700000,
+"term": 6,
+"p": 0.9188,
+"actual": 1
+},
+{
+"cibil": 740,
+"income": 4400000,
+"amount": 12500000,
+"term": 6,
+"p": 0.0035,
+"actual": 0
+},
+{
+"cibil": 863,
+"income": 1100000,
+"amount": 4100000,
+"term": 20,
+"p": 0.0004,
+"actual": 0
+},
+{
+"cibil": 570,
+"income": 8000000,
+"amount": 20700000,
+"term": 6,
+"p": 0.1721,
+"actual": 0
+},
+{
+"cibil": 804,
+"income": 6800000,
+"amount": 22600000,
+"term": 2,
+"p": 0.0002,
+"actual": 0
+},
+{
+"cibil": 620,
+"income": 1900000,
+"amount": 4200000,
+"term": 4,
+"p": 0.0534,
+"actual": 0
+},
+{
+"cibil": 325,
+"income": 2700000,
+"amount": 8100000,
+"term": 4,
+"p": 0.9798,
+"actual": 0
+},
+{
+"cibil": 725,
+"income": 8900000,
+"amount": 19100000,
+"term": 2,
+"p": 0.0069,
+"actual": 0
+},
+{
+"cibil": 316,
+"income": 7500000,
+"amount": 25200000,
+"term": 8,
+"p": 0.9916,
+"actual": 1
+},
+{
+"cibil": 408,
+"income": 6900000,
+"amount": 19200000,
+"term": 12,
+"p": 0.9616,
+"actual": 1
+},
+{
+"cibil": 367,
+"income": 4100000,
+"amount": 14100000,
+"term": 8,
+"p": 0.9642,
+"actual": 1
+},
+{
+"cibil": 540,
+"income": 1400000,
+"amount": 3400000,
+"term": 6,
+"p": 0.3744,
+"actual": 1
+},
+{
+"cibil": 651,
+"income": 2100000,
+"amount": 4900000,
+"term": 12,
+"p": 0.096,
+"actual": 0
+},
+{
+"cibil": 485,
+"income": 2500000,
+"amount": 7700000,
+"term": 16,
+"p": 0.8343,
+"actual": 1
+},
+{
+"cibil": 504,
+"income": 3300000,
+"amount": 7000000,
+"term": 20,
+"p": 0.9532,
+"actual": 1
+},
+{
+"cibil": 630,
+"income": 2700000,
+"amount": 6100000,
+"term": 14,
+"p": 0.1817,
+"actual": 0
+},
+{
+"cibil": 514,
+"income": 8400000,
+"amount": 27200000,
+"term": 10,
+"p": 0.5473,
+"actual": 1
+},
+{
+"cibil": 402,
+"income": 8700000,
+"amount": 28300000,
+"term": 8,
+"p": 0.8798,
+"actual": 1
+},
+{
+"cibil": 843,
+"income": 4500000,
+"amount": 15300000,
+"term": 10,
+"p": 0.0003,
+"actual": 0
+}
+]

@@ -2,35 +2,35 @@ import Link from "next/link";
 
 const roles = [
   {
-    period: "Apr 2026 —",
+    period: "Apr 2026 to now",
     role: "Graduate Data Analyst",
     org: "Transforming Communities Institute, USU",
     current: true,
   },
   {
-    period: "Aug 2026 —",
+    period: "Aug 2026 to now",
     role: "Data Analyst",
     org: "Meals on Wheels, Logan",
     current: true,
   },
   {
-    period: "Sep 2026 —",
+    period: "Sep 2026 to now",
     role: "Teaching Assistant",
     org: "DATA 5330/6330 Data Pipeline Engineering",
     current: true,
   },
   {
-    period: "Dec 2025 – Apr 2026",
+    period: "Dec 2025 to Apr 2026",
     role: "Teaching Assistant",
     org: "Cloud Computing, USU",
   },
   {
-    period: "Jun – Aug 2024",
+    period: "Jun to Aug 2024",
     role: "SAP MM Intern",
     org: "Tata Motors, Pune",
   },
   {
-    period: "Jan – Mar 2024",
+    period: "Jan to Mar 2024",
     role: "Power BI Analyst",
     org: "Medikart Pharmaceutical, Pune",
   },
@@ -47,8 +47,8 @@ export default function ExperienceTeaser() {
         className="prose-serif text-lg max-w-[58ch] mb-14"
         style={{ color: "var(--ink-2)" }}
       >
-        Three concurrent roles at Utah State — a justice-data pipeline, a
-        meal-delivery programme, and the pipeline-engineering course — on top of
+        Three concurrent roles at Utah State: a justice-data pipeline, a
+        meal-delivery programme, and the pipeline-engineering course, on top of
         earlier enterprise work in Pune.
       </p>
 

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-/* A reference-book serif: sturdy, low contrast, made for reading —
+/* A reference-book serif: sturdy, low contrast, made for reading,
    not a high-contrast display face. */
 const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
@@ -23,7 +23,7 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "Aryan Mudhole — Data Analyst",
+  title: "Aryan Mudhole, Data Analyst",
   description:
     "Data analyst and MMIS candidate at Utah State University's Huntsman School of Business. Justice-system data, meal-delivery reporting, credit-risk modelling.",
 };

@@ -18,7 +18,7 @@ const projects: Project[] = [
     year: "Feb 2026",
     title: "Scoring borrowers for a micro-lender",
     summary:
-      "Benchmarked logistic regression, random forest, gradient boosting and an MLP on 4,269 loan applications. The data carries an approve/reject label rather than an observed default flag, so rejection stands in for default risk — a limitation stated up front rather than buried.",
+      "Benchmarked logistic regression, random forest, gradient boosting and an MLP on 4,269 loan applications. The data carries an approve/reject label rather than an observed default flag, so rejection stands in for default risk. The limitation is stated up front rather than buried.",
     finding:
       "Removing credit score collapsed gradient boosting from 0.99 accuracy to 0.61. A lender serving underbanked borrowers cannot score credit-invisible applicants on this feature set at all.",
     tech: ["Python", "Gradient boosting", "Random forest", "SHAP", "scikit-learn"],
@@ -40,7 +40,7 @@ const projects: Project[] = [
     year: "2025",
     title: "Housing signals across 335 US cities",
     summary:
-      "Merged socio-economic datasets for 335 cities into one regression model, then read it for pricing patterns and growth signals — written as a narrative a non-technical reader can act on rather than a table of coefficients.",
+      "Merged socio-economic datasets for 335 cities into one regression model, then read it for pricing patterns and growth signals, written as a narrative a non-technical reader can act on rather than a table of coefficients.",
     tech: ["Python", "Regression", "pandas"],
     href: "/projects/housing-price",
   },
