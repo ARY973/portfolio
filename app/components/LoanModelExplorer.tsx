@@ -90,7 +90,16 @@ export default function LoanModelExplorer() {
   }, [result]);
 
   return (
-    <section id="model" className="max-w-5xl mx-auto px-6 py-20 scroll-mt-16">
+    <section
+      id="model"
+      className="scroll-mt-16 py-24 my-10"
+      style={{
+        background: "var(--paper-rise)",
+        borderTop: "1px solid var(--rule)",
+        borderBottom: "1px solid var(--rule)",
+      }}
+    >
+      <div className="max-w-5xl mx-auto px-6">
       <h2 className="text-3xl md:text-4xl mb-3">The model, running</h2>
       <p
         className="prose-serif text-lg max-w-[58ch] mb-3"
@@ -299,6 +308,7 @@ export default function LoanModelExplorer() {
         </a>
         .
       </p>
+      </div>
     </section>
   );
 }

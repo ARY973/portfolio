@@ -1,4 +1,4 @@
-import LiveFeed from "./LiveFeed";
+import DecisionBoundary from "./DecisionBoundary";
 
 const CURRENT = [
   {
@@ -20,14 +20,14 @@ const CURRENT = [
 
 export default function Hero() {
   return (
-    <section className="max-w-5xl mx-auto px-6 pt-24 pb-20 md:pt-36 md:pb-28">
+    <section className="max-w-5xl mx-auto px-6 pt-28 pb-24 md:pt-44 md:pb-32">
       <div className="rise">
-        <h1 className="text-[2.6rem] md:text-[3.75rem] leading-[1.05] max-w-[18ch]">
+        <h1 className="text-[3rem] md:text-[5rem] leading-[0.98] max-w-[16ch]">
           Aryan Mudhole
         </h1>
 
         <p
-          className="prose-serif mt-7 text-xl md:text-2xl max-w-[46ch]"
+          className="prose-serif mt-8 text-xl md:text-[1.75rem] md:leading-snug max-w-[44ch]"
           style={{ color: "var(--ink-2)" }}
         >
           I build the data behind decisions that affect people: who gets a meal,
@@ -59,8 +59,8 @@ export default function Hero() {
         ))}
       </dl>
 
-      <div className="mt-14">
-        <LiveFeed />
+      <div className="mt-14 rule-top pt-8" style={{ borderColor: "var(--rule-firm)" }}>
+        <DecisionBoundary />
       </div>
 
       <p className="mt-12 text-sm" style={{ color: "var(--ink-2)" }}>

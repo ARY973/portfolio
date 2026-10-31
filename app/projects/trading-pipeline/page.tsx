@@ -1,3 +1,38 @@
+import PipelineFlow from "../../components/PipelineFlow";
+
+const STAGES = [
+  {
+    name: "Fetch prices and filings",
+    detail:
+      "data_fetcher.py pulls daily prices and the latest SEC 10-K text for ten tickers.",
+    out: "10 tickers, prices + filings written to data/",
+  },
+  {
+    name: "Score sentiment",
+    detail:
+      "sentiment_analyzer.py sends the filing text to Groq's Llama 3 (llama-3.3-70b-versatile) for financial sentiment, with reasoning attached.",
+    out: "sentiment_scores.csv",
+  },
+  {
+    name: "Build signals",
+    detail:
+      "financial_signals.py computes RSI, P/E, revenue growth and 20-day momentum from the price history.",
+    out: "financial_signals.csv",
+  },
+  {
+    name: "Predict",
+    detail:
+      "ml_model.py combines sentiment and signals in an XGBoost classifier that predicts whether a stock beats earnings expectations.",
+    out: "6 buy, 4 sell · best NFLX at 0.758 confidence",
+  },
+  {
+    name: "Execute",
+    detail:
+      "alpaca_trader.py places the corresponding paper trades through the Alpaca API. No real money is involved.",
+    out: "results.json, cron_log.txt",
+  },
+];
+
 export default function TradingPipeline() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-24">
@@ -15,6 +50,14 @@ export default function TradingPipeline() {
         course at Utah State University, deployed on AWS EC2 and running 
         every weekday at 9am ET without manual intervention.
       </p>
+
+      {/* Watch one run */}
+      <div className="mb-16">
+        <PipelineFlow
+          stages={STAGES}
+          caption="Stage names and outputs are taken from the repository. The timing is for watching; the run itself takes minutes."
+        />
+      </div>
 
       {/* Architecture */}
       <h2 className="text-2xl md:text-3xl mb-4">Architecture</h2>
