@@ -25,18 +25,14 @@ const images = [
 
 export default function BeyondPage() {
   return (
-    <section className="max-w-4xl mx-auto px-6 py-28 text-white">
-      <p className="text-blue-400 text-sm mb-2">Beyond the work</p>
+    <section className="max-w-3xl mx-auto px-6 py-28">
+      <h1 className="text-4xl md:text-5xl mb-3">Washington, DC</h1>
 
-      <h1 className="text-4xl font-semibold mb-3">
-        Washington, DC
-      </h1>
-
-      <p className="text-white/50 text-sm uppercase tracking-widest mb-10">
-        USU Huntsman School of Business · Leadership Program · Oct 2025
+      <p className="text-sm mb-12" style={{ color: "var(--ink-3)" }}>
+        Huntsman School of Business leadership programme, October 2025
       </p>
 
-      <div className="space-y-6 text-lg leading-relaxed text-slate-200 mb-6">
+      <div className="prose-serif space-y-6 text-lg max-w-[62ch] mb-8">
         <p>
           I have tears while writing this. I never imagined that I would be
           gifted with so many experiences, lessons, and relationships in a
@@ -49,7 +45,10 @@ export default function BeyondPage() {
         </p>
       </div>
 
-      <blockquote className="border-l-2 border-blue-400/60 pl-5 italic text-slate-300 text-lg mb-14">
+      <blockquote
+        className="prose-serif pl-5 italic text-xl mb-14"
+        style={{ borderLeft: "2px solid var(--signal)", color: "var(--ink)" }}
+      >
         &ldquo;Ascend to higher ground and descend to higher ground.&rdquo;
       </blockquote>
 
@@ -57,21 +56,22 @@ export default function BeyondPage() {
         {images.map((src, i) => (
           <div
             key={src}
-            className="relative aspect-square overflow-hidden rounded-lg border border-slate-800"
+            className="relative aspect-square overflow-hidden"
+            style={{ border: "1px solid var(--rule)" }}
           >
             <Image
               src={src}
               alt={`Washington DC, October 2025 — photo ${i + 1}`}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
-              className="object-cover hover:scale-[1.03] transition-transform duration-500"
+              className="object-cover"
             />
           </div>
         ))}
       </div>
 
-      <Link href="/" className="text-blue-300 hover:text-blue-200 text-sm">
-        ← Back to home
+      <Link href="/" className="link text-sm">
+        Back to home
       </Link>
     </section>
   );

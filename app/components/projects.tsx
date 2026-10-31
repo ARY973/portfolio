@@ -1,174 +1,127 @@
-"use client";
+import Link from "next/link";
 
-import { motion } from "framer-motion";
+type Project = {
+  id: string;
+  field: string;
+  year: string;
+  title: string;
+  summary: string;
+  finding?: string;
+  tech: string[];
+  href: string;
+};
 
-const projects = [
-  {
-    id: "trading-pipeline",
-    category: "Product Build · FinTech · ML Engineering",
-    title: "AI-Powered Stock Trading System — 0 to 1",
-    description:
-      "Identified a gap in retail investor decision-making, defined success metrics, and shipped an end-to-end automated pipeline on AWS EC2 — integrating SEC 10-K filings via EDGAR, LLM sentiment scoring via Groq Llama 3, quantitative signals (RSI, P/E, momentum), XGBoost predictions, and automated paper trade execution via Alpaca API. Daily automated execution with logging and error handling.",
-    tech: ["Python", "XGBoost", "AWS EC2", "Groq Llama 3", "SEC EDGAR", "Alpaca API"],
-    link: "/projects/trading-pipeline",
-    linkLabel: "View Project",
-  },
+const projects: Project[] = [
   {
     id: "loan-risk",
-    category: "FinTech · Data Product",
-    title: "FinTech Credit Risk — From Data to Business Decision",
-    description:
-      "Benchmarked four models — logistic regression, random forest, gradient boosting and an MLP — to score borrower risk for a micro-lender. The dataset carries an approve/reject label rather than an observed default flag, so rejection is used as a proxy for default risk and the limitation is stated up front. A no-CIBIL stress test showed accuracy collapsing from 0.99 to 0.61 without a credit score, which drove the recommendation: don't score credit-invisible borrowers on this feature set alone.",
-    tech: ["Python", "Gradient Boosting", "Random Forest", "Scikit-learn", "SHAP"],
-    link: "/projects/loan-default",
-    linkLabel: "View Project",
+    field: "Credit risk",
+    year: "Feb 2026",
+    title: "Scoring borrowers for a micro-lender",
+    summary:
+      "Benchmarked logistic regression, random forest, gradient boosting and an MLP on 4,269 loan applications. The data carries an approve/reject label rather than an observed default flag, so rejection stands in for default risk — a limitation stated up front rather than buried.",
+    finding:
+      "Removing credit score collapsed gradient boosting from 0.99 accuracy to 0.61. A lender serving underbanked borrowers cannot score credit-invisible applicants on this feature set at all.",
+    tech: ["Python", "Gradient boosting", "Random forest", "SHAP", "scikit-learn"],
+    href: "/projects/loan-default",
+  },
+  {
+    id: "trading-pipeline",
+    field: "FinTech",
+    year: "Apr 2026",
+    title: "An automated trading pipeline, end to end",
+    summary:
+      "SEC 10-K filings through EDGAR, sentiment scored by Groq Llama 3, quantitative signals (RSI, P/E, momentum) and XGBoost predictions, executing daily paper trades through the Alpaca API. Runs unattended on AWS EC2 with logging and error handling.",
+    tech: ["Python", "XGBoost", "AWS EC2", "Groq Llama 3", "SEC EDGAR", "Alpaca"],
+    href: "/projects/trading-pipeline",
   },
   {
     id: "housing-price",
-    category: "Machine Learning · Market Intelligence",
-    title: "Housing Market Intelligence — 335 US Cities",
-    description:
-      "Integrated multi-source socio-economic datasets across 335 US cities into a unified analytical model. Identified pricing patterns, growth signals, and investment insights — presented as a clear, actionable data narrative rather than raw model output.",
-    tech: ["Python", "Regression Modeling", "Pandas", "Data Visualization"],
-    link: "/projects/housing-price",
-    linkLabel: "View Project",
+    field: "Market analysis",
+    year: "2025",
+    title: "Housing signals across 335 US cities",
+    summary:
+      "Merged socio-economic datasets for 335 cities into one regression model, then read it for pricing patterns and growth signals — written as a narrative a non-technical reader can act on rather than a table of coefficients.",
+    tech: ["Python", "Regression", "pandas"],
+    href: "/projects/housing-price",
   },
   {
     id: "f1-analytics",
-    category: "Sports Analytics · Machine Learning",
-    title: "Formula 1 Performance Analytics",
-    description:
-      "Analyzed Formula 1 race performance data to surface patterns in lap consistency, race strategy, and driver performance across seasons. Translated complex motorsport data into clear competitive insights.",
-    tech: ["Python", "Pandas", "Data Analysis", "Visualization"],
-    link: "/projects/f1-analysis",
-    linkLabel: "View Project",
+    field: "Sports analytics",
+    year: "2025",
+    title: "What makes a Formula 1 driver consistent",
+    summary:
+      "Race data across seasons analysed for lap consistency, strategy and driver performance, including how podium probability moves with driver age.",
+    tech: ["Python", "pandas", "Visualisation"],
+    href: "/projects/f1-analysis",
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export default function Projects() {
   return (
-    <section id="work" className="relative py-32 px-6 scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
+    <section id="work" className="max-w-5xl mx-auto px-6 py-20 scroll-mt-16">
+      <h2 className="text-3xl md:text-4xl mb-3">Work</h2>
+      <p
+        className="prose-serif text-lg max-w-[58ch] mb-14"
+        style={{ color: "var(--ink-2)" }}
+      >
+        Four builds, each one carried past the model to the decision it was
+        supposed to inform.
+      </p>
 
-        {/* HEADER */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white">
-            Projects
-          </h2>
-          <p className="mt-4 text-white/70 max-w-2xl mx-auto">
-            End-to-end product builds and data systems — from problem identification
-            to shipped solution.
-          </p>
-        </motion.div>
+      <div className="rule-top" style={{ borderColor: "var(--rule-firm)" }}>
+        {projects.map((p) => (
+          <article
+            key={p.id}
+            className="spine py-10 rule-bottom"
+            style={{ borderColor: "var(--rule)" }}
+          >
+            <div className="spine-label">
+              <span className="block">{p.field}</span>
+              <span className="block tabular mt-0.5">{p.year}</span>
+            </div>
 
-        {/* CARDS */}
-        <motion.div
-          className="grid gap-10 md:grid-cols-2 lg:grid-cols-2"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={cardVariants}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="
-                relative
-                bg-white/10 backdrop-blur-md
-                border border-white/20
-                rounded-2xl
-                p-8
-                shadow-lg
-                transition-all duration-300
-                hover:-translate-y-1
-                hover:shadow-2xl
-                hover:border-white/40
-              "
-            >
-              {/* Glow layer */}
-              <div className="
-                pointer-events-none
-                absolute inset-0
-                rounded-2xl
-                opacity-0
-                hover:opacity-100
-                transition
-                bg-gradient-to-br
-                from-indigo-400/20
-                via-purple-400/10
-                to-transparent
-              " />
-
-              <p className="text-sm text-white/60 mb-1 relative z-10">
-                {project.category}
-              </p>
-
-              <h3 className="text-xl font-semibold text-white relative z-10">
-                {project.title}
+            <div className="max-w-[62ch]">
+              <h3 className="text-xl md:text-2xl mb-3">
+                <Link
+                  href={p.href}
+                  className="hover:underline"
+                  style={{
+                    textUnderlineOffset: "0.18em",
+                    textDecorationThickness: "1px",
+                  }}
+                >
+                  {p.title}
+                </Link>
               </h3>
 
-              <p className="mt-3 text-white/75 relative z-10">
-                {project.description}
+              <p className="prose-serif" style={{ color: "var(--ink-2)" }}>
+                {p.summary}
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-2 relative z-10">
-                {project.tech.map((techItem) => (
-                  <span
-                    key={techItem}
-                    className="
-                      text-xs
-                      bg-white/20
-                      text-white
-                      px-3 py-1
-                      rounded-full
-                      border border-white/20
-                    "
-                  >
-                    {techItem}
-                  </span>
-                ))}
-              </div>
+              {p.finding && (
+                <p
+                  className="prose-serif mt-4 pl-4"
+                  style={{
+                    borderLeft: "2px solid var(--signal)",
+                    color: "var(--ink)",
+                  }}
+                >
+                  {p.finding}
+                </p>
+              )}
 
-              <a
-                href={project.link}
-                className="
-                  inline-flex items-center gap-1
-                  mt-6
-                  text-sm font-medium
-                  text-blue-300
-                  hover:text-blue-200
-                  transition
-                  relative z-10
-                "
-              >
-                {project.linkLabel}
-                <span>→</span>
-              </a>
-            </motion.div>
-          ))}
-        </motion.div>
+              <p className="mt-5 text-sm" style={{ color: "var(--ink-3)" }}>
+                {p.tech.join(", ")}
+              </p>
+
+              <p className="mt-4 text-sm">
+                <Link href={p.href} className="link">
+                  Read the write-up
+                </Link>
+              </p>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );

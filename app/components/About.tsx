@@ -1,70 +1,59 @@
-'use client';
-
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import Image from "next/image";
+import Link from "next/link";
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 flex justify-center scroll-mt-20">
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="w-full max-w-5xl grid md:grid-cols-2 gap-12 items-center"
-      >
+    <section id="about" className="max-w-5xl mx-auto px-6 py-20 scroll-mt-16">
+      <h2 className="text-3xl md:text-4xl mb-14">About</h2>
 
-        {/* LEFT — IMAGE */}
-        <div className="flex justify-center md:justify-start">
-          <div className="relative z-10 max-w-5xl mx-auto px-8 py10 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
-            <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-indigo-100 to-purple-100 -z-10" />
-            <Image
-              src="/about/aryan.jpg"
-              alt="Aryan portrait"
-              width={360}
-              height={360}
-              className="rounded-2xl shadow-lg object-cover"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* RIGHT — TEXT */}
-        <div className="text-center md:text-left">
-          <h2 className="text-3xl font-semibold text-white">
-            About
-          </h2>
-
-          <p className="mt-4 text-slate-200 text-lg leading-relaxed mb-4">
-            I&apos;m Aryan — a product-minded technologist and MMIS candidate at
-            Utah State University&apos;s Jon M. Huntsman School of Business, and past
-            President of the USU AI Club.
+      <div className="grid md:grid-cols-[1fr_15rem] gap-x-14 gap-y-10 items-start">
+        <div className="prose-serif text-lg max-w-[62ch] space-y-5">
+          <p>
+            I came to Logan from Pune in August 2025, alone with three
+            suitcases, for a Master of Management Information Systems at Utah
+            State University&apos;s Huntsman School of Business. It was the
+            first time I had left India.
           </p>
-
-          <p className="text-slate-200 text-lg leading-relaxed mb-4">
-            I&apos;m drawn to the product side of data — not just building pipelines,
-            but identifying what problem they solve, who they serve, and how they
-            create measurable business impact. At the USU Transforming Communities
-            Institute, I own a data product end-to-end: gathering requirements from
-            the Executive Director, designing the architecture, shipping to production,
-            and iterating based on feedback — serving 220 clients and Utah Supreme
-            Court reporting goals.
+          <p style={{ color: "var(--ink-2)" }}>
+            What I like about data work is the part after the model. At the
+            Transforming Communities Institute I own the Community Justice
+            Administration pipeline end to end — gathering requirements from
+            the Executive Director, designing it, shipping it, and writing the
+            codebooks so the research staff can use it without me. At Meals on
+            Wheels the questions come from programme stakeholders rather than a
+            spec, which means most of the job is working out what they actually
+            need before writing anything.
           </p>
-
-          <p className="text-slate-200 text-lg leading-relaxed mb-4">
-            Before USU, I built Power BI dashboards at Medikart Pharmaceutical and
-            worked with enterprise data systems at Tata Motors. My master&apos;s
-            coursework in Advanced ML and FinTech has pushed me deeper into
-            XGBoost classifiers, predictive pipelines, and financial analytics systems.
+          <p style={{ color: "var(--ink-2)" }}>
+            Before USU I built Power BI dashboards at Medikart and worked
+            inside SAP at Tata Motors. I was president of the USU AI Club, and
+            represented it in Washington, D.C. through the Covey Leadership
+            Center. I teach the data pipeline engineering course now, which has
+            made me much better at explaining things.
           </p>
-
-          <p className="text-slate-200 text-lg leading-relaxed">
-            That combination — technical depth, product thinking, and the ability to
-            translate complex data into clear business decisions — is where I do my
-            best work.
+          <p style={{ color: "var(--ink-2)" }}>
+            I am looking for analyst and data roles where the output is a
+            decision someone has to make.{" "}
+            <Link href="/beyond" className="link">
+              There is a longer story here
+            </Link>
+            .
           </p>
         </div>
-      </motion.div>
+
+        <div className="order-first md:order-last">
+          <Image
+            src="/about/aryan.jpg"
+            alt="Aryan Mudhole"
+            width={360}
+            height={360}
+            sizes="15rem"
+            className="w-40 md:w-full h-auto"
+            style={{ border: "1px solid var(--rule)" }}
+            priority
+          />
+        </div>
+      </div>
     </section>
   );
 }

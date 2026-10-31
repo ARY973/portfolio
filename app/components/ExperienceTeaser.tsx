@@ -1,47 +1,89 @@
+import Link from "next/link";
+
+const roles = [
+  {
+    period: "Apr 2026 —",
+    role: "Graduate Data Analyst",
+    org: "Transforming Communities Institute, USU",
+    current: true,
+  },
+  {
+    period: "Aug 2026 —",
+    role: "Data Analyst",
+    org: "Meals on Wheels, Logan",
+    current: true,
+  },
+  {
+    period: "Sep 2026 —",
+    role: "Teaching Assistant",
+    org: "DATA 5330/6330 Data Pipeline Engineering",
+    current: true,
+  },
+  {
+    period: "Dec 2025 – Apr 2026",
+    role: "Teaching Assistant",
+    org: "Cloud Computing, USU",
+  },
+  {
+    period: "Jun – Aug 2024",
+    role: "SAP MM Intern",
+    org: "Tata Motors, Pune",
+  },
+  {
+    period: "Jan – Mar 2024",
+    role: "Power BI Analyst",
+    org: "Medikart Pharmaceutical, Pune",
+  },
+];
+
 export default function ExperienceTeaser() {
   return (
-    <section id="experience" className="max-w-5xl mx-auto px-6 py-24 scroll-mt-20">
-      <p className="text-sm text-white/50 uppercase tracking-widest mb-3 text-center">
-        Career Journey
-      </p>
-      <h2 className="text-4xl font-bold text-white text-center mb-4">
-        Experience
-      </h2>
-      <p className="text-white/60 text-center mb-12 max-w-xl mx-auto">
-        Three concurrent roles at USU — a justice-data pipeline, a Meals on Wheels
-        delivery programme, and teaching the pipeline-engineering course — on top of
+    <section
+      id="experience"
+      className="max-w-5xl mx-auto px-6 py-20 scroll-mt-16"
+    >
+      <h2 className="text-3xl md:text-4xl mb-3">Experience</h2>
+      <p
+        className="prose-serif text-lg max-w-[58ch] mb-14"
+        style={{ color: "var(--ink-2)" }}
+      >
+        Three concurrent roles at Utah State — a justice-data pipeline, a
+        meal-delivery programme, and the pipeline-engineering course — on top of
         earlier enterprise work in Pune.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-        {[
-          { role: "Graduate Data Analyst", company: "USU Transforming Communities Institute", period: "Apr 2026 — Present", current: true },
-          { role: "Data Analyst", company: "Meals on Wheels, Logan UT", period: "Aug 2026 — Present", current: true },
-          { role: "Teaching Assistant", company: "DATA 5330/6330 Data Pipeline Engineering", period: "Sep 2026 — Present", current: true },
-          { role: "Teaching Assistant", company: "Utah State University · Cloud Computing", period: "Dec 2025 — Apr 2026", current: false },
-          { role: "SAP MM Intern", company: "Tata Motors, Pune", period: "Jun 2024 — Aug 2024", current: false },
-          { role: "Power BI Analyst", company: "Medikart Pharmaceutical, Pune", period: "Jan 2024 — Mar 2024", current: false },
-        ].map((exp) => (
-          <div key={`${exp.role}-${exp.period}`} className="bg-white/5 border border-white/10 rounded-xl p-5 flex justify-between items-start">
-            <div>
-              <p className="text-white font-medium">{exp.role}</p>
-              <p className="text-white/50 text-sm mt-1">{exp.company}</p>
-              <p className="text-white/30 text-xs mt-1">{exp.period}</p>
-            </div>
-            {exp.current && (
-              <span className="text-xs bg-blue-500/20 text-blue-300 border border-blue-400/30 px-2 py-1 rounded-full">
-                Current
+      <dl className="rule-top" style={{ borderColor: "var(--rule-firm)" }}>
+        {roles.map((r) => (
+          <div
+            key={r.role + r.period}
+            className="spine py-5 rule-bottom"
+            style={{ borderColor: "var(--rule)" }}
+          >
+            <dt className="spine-label tabular">
+              {r.period}
+              {r.current && (
+                <span
+                  className="ml-2 align-middle inline-block w-1.5 h-1.5 rounded-full"
+                  style={{ background: "var(--signal)" }}
+                  aria-label="current role"
+                />
+              )}
+            </dt>
+            <dd>
+              <span className="block">{r.role}</span>
+              <span className="block text-sm mt-0.5" style={{ color: "var(--ink-2)" }}>
+                {r.org}
               </span>
-            )}
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
 
-      <div className="text-center">
-        <a href="/experience" className="inline-block px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-full text-sm transition">
-          View Full Experience →
-        </a>
-      </div>
+      <p className="mt-8 text-sm">
+        <Link href="/experience" className="link">
+          What each role actually involved
+        </Link>
+      </p>
     </section>
   );
 }

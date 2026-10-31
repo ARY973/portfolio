@@ -1,66 +1,160 @@
 @import "tailwindcss";
 
-/* ================================
-   GLOBAL THEME VARIABLES
-================================ */
+/* =========================================================
+   CODEBOOK — design tokens
+
+   The site is set like a reference document: a narrow label
+   column against a wide content column, precise values,
+   hairlines instead of boxes. Colour is almost absent; the
+   one signal hue is reserved for things that are live.
+   ========================================================= */
 :root {
-  --background: #0f172a;   /* deep slate / night sky */
-  --foreground: #e5e7eb;   /* soft light text */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  color-scheme: light;
+
+  --paper:      #f4f5f2;  /* cool off-white, not cream   */
+  --paper-rise: #fbfbfa;  /* raised surface               */
+  --ink:        #1a1e1c;  /* body text                    */
+  --ink-2:      #585f5a;  /* secondary                    */
+  --ink-3:      #8a918b;  /* labels, meta                 */
+  --rule:       #dcdfd9;  /* hairlines                    */
+  --rule-firm:  #c3c8c0;  /* emphasised hairlines         */
+  --signal:     #1b4dc1;  /* interactive + live only      */
+  --signal-sub: #e6ecfa;  /* signal wash                  */
+
+  /* Semantic, used only where it carries meaning (the model) */
+  --reject:     #9b2c2c;
+  --approve:    #1f5c3d;
+
+  --font-serif: var(--font-source-serif);
+  --font-sans:  var(--font-geist-sans);
+  --font-mono:  var(--font-geist-mono);
 }
 
-/* ================================
-   BASE STYLES
-================================ */
+/* =========================================================
+   BASE
+   ========================================================= */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  /* Use the Geist faces layout.tsx already loads, not Arial. */
+  background-color: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-}
-
-code, pre, .font-mono {
-  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
 html, body {
   overscroll-behavior: none;
-  touch-action: pan-y;
 }
 
-/* ================================
-   HERO ANIMATED GRADIENT
-================================ */
-@keyframes gradientShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Prose is serif and gets the longer measure; interface stays sans. */
+.prose-serif {
+  font-family: var(--font-serif), Georgia, serif;
+  line-height: 1.65;
 }
 
-.animated-gradient {
-  background: linear-gradient(
-    120deg,
-    #6366f1,
-    #8b5cf6,
-    #06b6d4,
-    #22c55e
-  );
-  background-size: 300% 300%;
-  animation: gradientShift 18s ease infinite;
+h1, h2, h3, .display {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--ink);
 }
 
-/* ================================
-   ACCESSIBILITY
-================================ */
+code, pre, .mono, .tabular {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   THE SPINE
+   A narrow label column against the content column. Below
+   the fold of a phone it stacks, label above content.
+   ========================================================= */
+.spine {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem 2.5rem;
+}
+
+@media (min-width: 820px) {
+  .spine {
+    grid-template-columns: 11rem 1fr;
+  }
+}
+
+.spine-label {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+  font-feature-settings: "tnum";
+}
+
+/* =========================================================
+   LINKS
+   Underline is the affordance; no arrow suffixes.
+   ========================================================= */
+a.link {
+  color: var(--signal);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, var(--signal) 35%, transparent);
+  transition: text-decoration-color 160ms ease;
+}
+
+a.link:hover {
+  text-decoration-color: var(--signal);
+}
+
+/* =========================================================
+   FOCUS — visible, on paper
+   ========================================================= */
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* =========================================================
+   RULES
+   ========================================================= */
+.rule-top {
+  border-top: 1px solid var(--rule);
+}
+
+.rule-bottom {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* =========================================================
+   MOTION
+   One orchestrated moment on load; nothing else moves on
+   its own.
+   ========================================================= */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.rise {
+  animation: riseIn 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
+}
+
+/* Range inputs read as instruments, not chrome. */
+input[type="range"] {
+  accent-color: var(--signal);
 }

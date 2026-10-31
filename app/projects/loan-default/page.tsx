@@ -124,13 +124,13 @@ print(results)
 
 export default function ProjectPage() {
   return (
-    <section className="max-w-4xl mx-auto px-6 py-24 text-white">
+    <section className="max-w-3xl mx-auto px-6 py-24">
 
-      <h1 className="text-4xl font-semibold mb-6">
+      <h1 className="text-4xl md:text-5xl mb-6">
         FinTech Credit Risk — Scoring Borrowers for a Micro-Lender
       </h1>
 
-      <p className="text-gray-200 leading-relaxed mb-6">
+      <p className="prose-serif max-w-[62ch] mb-6">
         A lender has to balance two opposing failures: too strict and it denies
         credit to people who deserve it, too lenient and it books losses. I
         benchmarked four models on 4,269 loan applications to give a Head of
@@ -151,12 +151,12 @@ export default function ProjectPage() {
         </p>
       </div>
 
-      <h2 className="text-2xl font-semibold mb-4">Results</h2>
+      <h2 className="text-2xl md:text-3xl mb-4">Results</h2>
 
       <div className="overflow-x-auto mb-4">
         <table className="w-full text-sm border-collapse">
           <thead>
-            <tr className="border-b border-slate-700 text-gray-400 text-left">
+            <tr className="border-b  text-gray-400 text-left">
               <th className="py-2 pr-4 font-medium">Model</th>
               <th className="py-2 px-3 font-medium text-right">Accuracy</th>
               <th className="py-2 px-3 font-medium text-right">F1</th>
@@ -170,7 +170,7 @@ export default function ProjectPage() {
               ["MLP (neural net)", "0.9684", "0.9579", "0.9939"],
               ["Logistic Regression", "0.9157", "0.8857", "0.9744"],
             ].map(([m, a, f, r]) => (
-              <tr key={m} className="border-b border-slate-800">
+              <tr key={m} className="border-b ">
                 <td className="py-2 pr-4">{m}</td>
                 <td className="py-2 px-3 text-right tabular-nums">{a}</td>
                 <td className="py-2 px-3 text-right tabular-nums">{f}</td>
@@ -181,25 +181,25 @@ export default function ProjectPage() {
         </table>
       </div>
 
-      <p className="text-gray-300 text-sm leading-relaxed mb-10">
+      <p className="prose-serif text-[0.95rem] max-w-[62ch] mb-10">
         Tree ensembles clearly win. I recommended gradient boosting as the
         production scorer — near-identical to random forest but better
         probability quality — with logistic regression kept as the
         interpretable benchmark for audit and policy conversations.
       </p>
 
-      <h2 className="text-2xl font-semibold mb-3">
+      <h2 className="text-2xl md:text-3xl mb-3">
         The finding that mattered
       </h2>
 
-      <p className="text-gray-200 leading-relaxed mb-4">
+      <p className="prose-serif max-w-[62ch] mb-4">
         CIBIL score dominates every model, so I retrained gradient boosting
         with it removed, to simulate a thin-file borrower with no credit
         history. Accuracy fell from <strong>0.99 to 0.607</strong>, recall to
         0.124, ROC-AUC to 0.586 — barely better than guessing.
       </p>
 
-      <p className="text-gray-300 leading-relaxed mb-10">
+      <p className="prose-serif max-w-[62ch] mb-10">
         That is the business answer, not the leaderboard. A micro-lender
         serving underbanked borrowers cannot score credit-invisible applicants
         on this feature set at all. It needs alternative data — cash-flow
@@ -208,16 +208,16 @@ export default function ProjectPage() {
         behavioural record.
       </p>
 
-      <h2 className="text-2xl font-semibold mb-4">Baseline pipeline</h2>
+      <h2 className="text-2xl md:text-3xl mb-4">Baseline pipeline</h2>
 
       <CodeBlock code={code} />
 
       <a
         href="/projects/Ryan_Report.pdf"
         target="_blank"
-        className="inline-block mt-8 text-blue-300 hover:text-blue-200"
+        className="inline-block mt-8 link"
       >
-        View Full Analysis →
+        Read the full analysis →
       </a>
 
     </section>

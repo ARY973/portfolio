@@ -1,29 +1,35 @@
-"use client";
 import { codeToHtml } from "shiki";
 
-export default async function CodeBlock({ code }: { code: string }) {
-
+export default async function CodeBlock({
+  code,
+  filename = "model.py",
+}: {
+  code: string;
+  filename?: string;
+}) {
   const html = await codeToHtml(code, {
     lang: "python",
-    theme: "github-dark",
+    theme: "github-light",
   });
 
   return (
-    <div className="rounded-xl border border-white/10 bg-black/40 backdrop-blur-md overflow-hidden">
-
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-black/50 text-xs text-gray-300">
-
-        <span>loan_default_model.py</span>
-
+    <div style={{ border: "1px solid var(--rule)" }}>
+      <div
+        className="flex items-center justify-between px-4 py-2 text-xs mono"
+        style={{
+          borderBottom: "1px solid var(--rule)",
+          color: "var(--ink-3)",
+          background: "var(--paper-rise)",
+        }}
+      >
+        <span>{filename}</span>
       </div>
 
-      {/* Code */}
       <div
-        className="overflow-auto max-h-[700px] text-sm p-4"
+        className="overflow-auto max-h-[36rem] text-[0.8125rem] p-4"
+        style={{ background: "var(--paper-rise)" }}
         dangerouslySetInnerHTML={{ __html: html }}
       />
-
     </div>
   );
 }

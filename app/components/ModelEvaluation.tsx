@@ -1,134 +1,66 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
+
+const figures = [
+  {
+    src: "/images/confusion_matrix.png",
+    w: 832,
+    h: 704,
+    caption:
+      "503 approvals and 279 rejections called correctly. The 44 rejections it missed are the expensive ones — a lender booking risk it meant to decline.",
+  },
+  {
+    src: "/images/roc_curve.png",
+    w: 864,
+    h: 704,
+    caption:
+      "Separability between approved and rejected applications, across every threshold rather than just the default 50%.",
+  },
+  {
+    src: "/images/coefficients.png",
+    w: 1024,
+    h: 800,
+    caption:
+      "Credit score outweighs everything else roughly five to one. That concentration is what the no-credit-score stress test was built to probe.",
+  },
+];
 
 export default function ModelEvaluation() {
   return (
-    <section className="mt-32 flex flex-col items-center text-center">
-
-      {/* Section Title */}
-      <h2 className="text-3xl font-semibold text-white mb-4">
-        Model Evaluation & Insights
-      </h2>
-
-      <p className="text-gray-400 mb-12 max-w-xl">
-        Evaluation metrics and interpretability analysis from my machine learning models.
-        These visualizations demonstrate model performance, reliability, and feature impact.
+    <section className="max-w-5xl mx-auto px-6 py-20">
+      <h2 className="text-3xl md:text-4xl mb-3">How it was checked</h2>
+      <p
+        className="prose-serif text-lg max-w-[58ch] mb-14"
+        style={{ color: "var(--ink-2)" }}
+      >
+        Evaluation on a held-out fifth of the data, the logistic-regression
+        benchmark shown here because it is the one that can be read directly.
       </p>
 
-      {/* Grid */}
-      <div className="grid md:grid-cols-2 gap-8 max-w-6xl w-full">
-
-        {/* Confusion Matrix */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          className="bg-slate-800/60 backdrop-blur-lg border border-slate-700 rounded-xl p-6 text-left hover:border-blue-400 transition"
-        >
-          <h3 className="text-lg font-semibold text-white mb-2">
-            Confusion Matrix
-          </h3>
-
-          <p className="text-gray-400 text-sm mb-4">
-            Classification performance of the logistic-regression benchmark on a held-out test set.
-            It highlights true positives, true negatives, false positives, and false negatives.
-          </p>
-
-          <Image
-            src="/images/confusion_matrix.png"
-            alt="Confusion Matrix"
-            width={1521}
-            height={1361}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="rounded-lg border border-slate-700 mb-4 h-auto w-full"
-          />
-
-          <p className="text-blue-400 text-sm">
-            Accuracy: 91%
-          </p>
-        </motion.div>
-
-        {/* ROC Curve */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          className="bg-slate-800/60 backdrop-blur-lg border border-slate-700 rounded-xl p-6 text-left hover:border-blue-400 transition"
-        >
-          <h3 className="text-lg font-semibold text-white mb-2">
-            ROC Curve
-          </h3>
-
-          <p className="text-gray-400 text-sm mb-4">
-            Separability between applications the lender approved and those it
-            rejected — rejection standing in for default risk.
-          </p>
-
-          <Image
-            src="/images/roc_curve.png"
-            alt="ROC Curve"
-            width={2074}
-            height={1638}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="rounded-lg border border-slate-700 mb-4 h-auto w-full"
-          />
-
-          <p className="text-blue-400 text-sm">
-            AUC Score: 0.97
-          </p>
-        </motion.div>
-
-        {/* Feature Importance */}
-        <motion.div
-  whileHover={{ scale: 1.03 }}
-  className="bg-slate-800/60 backdrop-blur-lg border border-slate-700 rounded-xl p-6 text-left hover:border-blue-400 transition"
->
-
-<h3 className="text-lg font-semibold text-white mb-2">
-F1 Performance Insight
-</h3>
-
-<p className="text-gray-400 text-sm mb-4">
-Analysis of the relationship between driver age and podium finishes using Formula 1 race data.
-</p>
-
-<Image
-            src="/images/f1_driver_age_podium.png"
-            alt="Driver Age vs Podium Probability"
-            width={2548}
-            height={1638}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="rounded-lg border border-slate-700 h-auto w-full"
-          />
-
-</motion.div>
-
-        {/* SHAP Summary Plot */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          className="bg-slate-800/60 backdrop-blur-lg border border-slate-700 rounded-xl p-6 text-left hover:border-blue-400 transition"
-        >
-          <h3 className="text-lg font-semibold text-white mb-2">
-            SHAP Summary Plot
-          </h3>
-
-          <p className="text-gray-400 text-sm mb-4">
-            Explains how individual features contribute to model predictions.
-            SHAP values show how much each variable moves an individual decision.
-          </p>
-
-          <Image
-            src="/images/shap_summary.png"
-            alt="SHAP Summary"
-            width={2328}
-            height={1857}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="rounded-lg border border-slate-700 mb-4 h-auto w-full"
-          />
-
-          <p className="text-blue-400 text-sm">
-            Model Interpretability Analysis
-          </p>
-        </motion.div>
-
+      <div className="rule-top" style={{ borderColor: "var(--rule-firm)" }}>
+        {figures.map((f) => (
+          <figure
+            key={f.src}
+            className="spine py-10 rule-bottom"
+            style={{ borderColor: "var(--rule)" }}
+          >
+            <figcaption
+              className="prose-serif spine-label md:pt-1"
+              style={{ fontSize: "0.875rem", color: "var(--ink-2)" }}
+            >
+              {f.caption}
+            </figcaption>
+            <div className="max-w-[34rem]">
+              <Image
+                src={f.src}
+                alt=""
+                width={f.w}
+                height={f.h}
+                sizes="(max-width: 820px) 100vw, 34rem"
+                className="w-full h-auto"
+              />
+            </div>
+          </figure>
+        ))}
       </div>
     </section>
   );

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import ThreeScene from "./components/ThreeScene";
 import SiteNav from "./components/SiteNav";
 
 const geistSans = Geist({
@@ -14,9 +13,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
- export const metadata: Metadata = {
-  title: "Aryan Mudhole | Data Analyst & ML",
-  description: "Portfolio of Aryan Mudhole — Data Analyst, MMIS candidate at Utah State University's Jon M. Huntsman School of Business. Python, SQL, Power BI, Machine Learning.",
+/* A reference-book serif: sturdy, low contrast, made for reading —
+   not a high-contrast display face. */
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
+});
+
+export const metadata: Metadata = {
+  title: "Aryan Mudhole — Data Analyst",
+  description:
+    "Data analyst and MMIS candidate at Utah State University's Huntsman School of Business. Justice-system data, meal-delivery reporting, credit-risk modelling.",
 };
 
 export default function RootLayout({
@@ -25,27 +34,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="relative antialiased">
-         {/* 🌌 GLOBAL GALAXY BACKGROUND */}
-        <ThreeScene />
-
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable}`}
+    >
+      <body>
         <SiteNav />
 
-        {/* 📄 PAGE CONTENT — THIS WAS MISSING */}
-        <main id="main" className="relative z-20 pt-16">
-          {children}
-        </main>
+        <main id="main">{children}</main>
 
-        
-
-        {/* 👣 FOOTER */}
-        <footer className="relative z-20 py-20 flex flex-col items-center gap-6 text-gray-500">
-          <p className="text-sm">
-            Built with Next.js, Tailwind, and curiosity.
-          </p>
+        <footer className="rule-top mt-32">
+          <div className="max-w-5xl mx-auto px-6 py-10 flex flex-wrap gap-x-8 gap-y-2 justify-between text-sm">
+            <p style={{ color: "var(--ink-3)" }}>
+              Built with Next.js and Tailwind. Logan, Utah.
+            </p>
+            <p style={{ color: "var(--ink-3)" }}>
+              <a className="link" href="mailto:aryan.mudhole11@gmail.com">
+                aryan.mudhole11@gmail.com
+              </a>
+            </p>
+          </div>
         </footer>
-
       </body>
     </html>
   );

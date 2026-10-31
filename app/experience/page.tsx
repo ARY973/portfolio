@@ -122,61 +122,52 @@ const certifications = [
 
 export default function Experience() {
   return (
-    <main className="max-w-3xl mx-auto px-6 py-24 text-white">
-      <p className="text-sm text-white/50 uppercase tracking-widest mb-3">
-        Career Journey
-      </p>
-      <h1 className="text-4xl font-bold mb-4">Experience</h1>
-      <p className="text-white/60 text-lg mb-6">
+    <main className="max-w-5xl mx-auto px-6 py-24">
+      <h1 className="text-4xl md:text-5xl mb-4">Experience</h1>
+      <p className="prose-serif text-lg max-w-[58ch] mb-6" style={{ color: "var(--ink-2)" }}>
         The roles that shaped how I think about data, people, and impact.
       </p>
       <a
         href="/resume/Aryan_Mudhole_Resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block text-blue-300 hover:text-blue-200 text-sm mb-16"
+        className="link text-sm inline-block mb-16"
       >
-        Download the résumé (PDF) →
+        Download the résumé
       </a>
 
-      <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10" />
+      <div className="rule-top" style={{ borderColor: "var(--rule-firm)" }}>
+        
 
-        <div className="space-y-16">
+        <div>
           {experiences.map((exp) => (
-            <div key={`${exp.role}-${exp.period}`} className="relative pl-8">
-              <div
-                className={`absolute left-[-4px] top-1 w-2 h-2 rounded-full ${
-                  exp.current ? "bg-blue-400" : "bg-white/30"
-                }`}
-              />
-
-              <div className="flex items-center gap-3 mb-1">
-                <p className="text-white/40 text-xs uppercase tracking-widest">
-                  {exp.period}
-                </p>
+            <div key={`${exp.role}-${exp.period}`} className="spine py-10 rule-bottom" style={{ borderColor: "var(--rule)" }}>
+              <div className="spine-label tabular">
+                {exp.period}
                 {exp.current && (
-                  <span className="text-[10px] bg-blue-500/20 text-blue-300 border border-blue-400/30 px-2 py-0.5 rounded-full uppercase tracking-wide">
-                    Current
-                  </span>
+                  <span
+                    className="ml-2 align-middle inline-block w-1.5 h-1.5 rounded-full"
+                    style={{ background: "var(--signal)" }}
+                    aria-label="current role"
+                  />
                 )}
               </div>
 
-              <h2 className="text-xl font-semibold text-white mb-1">
-                {exp.role}
-              </h2>
-              <p className="text-blue-300 text-sm mb-4">
-                {exp.company} · {exp.type}
+              <div className="max-w-[62ch]">
+              <h2 className="text-xl md:text-2xl mb-1">{exp.role}</h2>
+              <p className="text-sm mb-5" style={{ color: "var(--ink-2)" }}>
+                {exp.company} — {exp.type}
               </p>
 
-              <p className="text-white/70 leading-relaxed mb-4">{exp.story}</p>
+              <p className="prose-serif mb-4" style={{ color: "var(--ink-2)" }}>{exp.story}</p>
 
               {exp.points && (
                 <ul className="space-y-2 mb-5">
                   {exp.points.map((pt) => (
                     <li
                       key={pt}
-                      className="text-white/60 text-sm leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-white/25"
+                      className="prose-serif text-[0.95rem] pl-4"
+                      style={{ color: "var(--ink-2)", borderLeft: "1px solid var(--rule)" }}
                     >
                       {pt}
                     </li>
@@ -184,15 +175,13 @@ export default function Experience() {
                 </ul>
               )}
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-x-3 gap-y-1">
                 {exp.stack.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full border border-white/20"
-                  >
+                  <span key={tag} className="text-xs" style={{ color: "var(--ink-3)" }}>
                     {tag}
                   </span>
                 ))}
+              </div>
               </div>
             </div>
           ))}
@@ -201,15 +190,16 @@ export default function Experience() {
 
       {/* Leadership */}
       <section className="mt-24">
-        <h2 className="text-2xl font-semibold mb-6">Leadership &amp; speaking</h2>
+        <h2 className="text-2xl md:text-3xl mb-6">Leadership and speaking</h2>
         <div className="space-y-5">
           {leadership.map((l) => (
             <div
               key={l.title}
-              className="border border-white/10 rounded-xl p-5 bg-white/5"
+              className="py-5 rule-bottom"
+              style={{ borderColor: "var(--rule)" }}
             >
-              <h3 className="text-white font-medium mb-1">{l.title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{l.detail}</p>
+              <h3 className="mb-1">{l.title}</h3>
+              <p className="prose-serif text-[0.95rem]" style={{ color: "var(--ink-2)" }}>{l.detail}</p>
             </div>
           ))}
         </div>
@@ -217,12 +207,13 @@ export default function Experience() {
 
       {/* Certifications */}
       <section className="mt-12">
-        <h2 className="text-2xl font-semibold mb-6">Certifications</h2>
-        <ul className="flex flex-wrap gap-3">
+        <h2 className="text-2xl md:text-3xl mb-6">Certifications</h2>
+        <ul className="flex flex-col gap-1">
           {certifications.map((c) => (
             <li
               key={c}
-              className="text-sm bg-white/10 text-white/80 px-4 py-2 rounded-lg border border-white/20"
+              className="text-sm py-2"
+              style={{ color: "var(--ink-2)" }}
             >
               {c}
             </li>
@@ -231,8 +222,8 @@ export default function Experience() {
       </section>
 
       <div className="mt-16">
-        <Link href="/" className="text-blue-300 hover:text-blue-200 text-sm">
-          ← Back to Home
+        <Link href="/" className="link text-sm">
+          Back to home
         </Link>
       </div>
     </main>
