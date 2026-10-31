@@ -38,7 +38,9 @@ export default function DecisionBoundary() {
     const step = (now: number) => {
       const dt = now - last;
       last = now;
-      setCount((c) => Math.min(c + dt * 0.35, DATA.length));
+      // ~47 points a second, so the full set lands in about 18 seconds:
+      // long enough to watch the separation emerge, short enough to finish.
+      setCount((c) => Math.min(c + dt * 0.047, DATA.length));
       rafRef.current = requestAnimationFrame(step);
     };
     rafRef.current = requestAnimationFrame(step);
