@@ -210,7 +210,7 @@ a.link:hover {
     main > section > div > p {
       animation: revealUp linear both;
       animation-timeline: view();
-      animation-range: entry 8% entry 46%;
+      animation-range: cover 2% cover 26%;
     }
 
     /* Each ruled row carries its own timeline, so the stagger
@@ -220,7 +220,7 @@ a.link:hover {
     main table tbody tr {
       animation: revealUp linear both;
       animation-timeline: view();
-      animation-range: entry 4% entry 38%;
+      animation-range: cover 1% cover 22%;
     }
 
     /* The hero is already on screen; it should not animate in. */
@@ -233,7 +233,7 @@ a.link:hover {
     main > section#model {
       animation: bandLift linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 30%;
+      animation-range: cover 0% cover 18%;
     }
   }
 }
