@@ -1,0 +1,66 @@
+/* Four candidate reveals, all scroll-linked so they reverse on the way up. */
+
+@keyframes labA {
+  from { opacity: 0.18; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes labB {
+  from { opacity: 0; transform: translateY(56px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes labCin {
+  from { opacity: 0; transform: scale(0.88) translateY(40px); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+
+@keyframes labCout {
+  from { opacity: 1; transform: none; filter: blur(0); }
+  to   { opacity: 0.15; transform: scale(0.9) translateY(-28px); filter: blur(5px); }
+}
+
+@keyframes labDleft {
+  from { opacity: 0; transform: translateX(-64px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes labDright {
+  from { opacity: 0; transform: translateX(64px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .lab-a .lab-row {
+      animation: labA linear both;
+      animation-timeline: view();
+      animation-range: cover 1% cover 22%;
+    }
+
+    .lab-b .lab-row {
+      animation: labB linear both;
+      animation-timeline: view();
+      animation-range: cover 2% cover 34%;
+    }
+
+    /* Arrives from behind, then sinks back as it leaves the top. */
+    .lab-c .lab-row {
+      animation: labCin linear both, labCout linear both;
+      animation-timeline: view(), view();
+      animation-range: cover 2% cover 32%, cover 70% cover 96%;
+    }
+
+    .lab-d .lab-row:nth-child(odd) {
+      animation: labDleft linear both;
+      animation-timeline: view();
+      animation-range: cover 2% cover 30%;
+    }
+
+    .lab-d .lab-row:nth-child(even) {
+      animation: labDright linear both;
+      animation-timeline: view();
+      animation-range: cover 2% cover 30%;
+    }
+  }
+}
