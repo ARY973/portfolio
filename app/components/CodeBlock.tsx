@@ -9,7 +9,7 @@ export default async function CodeBlock({
 }) {
   const html = await codeToHtml(code, {
     lang: "python",
-    theme: "github-light",
+    theme: "github-light-high-contrast",
   });
 
   return (
