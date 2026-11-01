@@ -30,8 +30,9 @@ export default function Hero() {
           className="prose-serif mt-8 text-xl md:text-[1.75rem] md:leading-snug max-w-[44ch]"
           style={{ color: "var(--ink-2)" }}
         >
-          I build the data behind decisions that affect people: who gets a meal,
-          how a court counts its cases, whether a loan is worth the risk.
+          Data analyst working across justice-system reporting, a meal-delivery
+          programme, and credit-risk modelling. I care most about the part after
+          the model, where someone has to act on it.
         </p>
       </div>
 

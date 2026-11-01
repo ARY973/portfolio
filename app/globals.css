@@ -15,9 +15,11 @@
   --paper-rise: #fbfbfa;  /* raised surface               */
   --ink:        #1a1e1c;  /* body text                    */
   --ink-2:      #585f5a;  /* secondary                    */
-  --ink-3:      #8a918b;  /* labels, meta                 */
+  --ink-3:      #6b716d;  /* labels, meta (4.6:1 on paper) */
   --rule:       #dcdfd9;  /* hairlines                    */
   --rule-firm:  #c3c8c0;  /* emphasised hairlines         */
+  --note-bg:    #eef1ea;  /* callout wash                 */
+  --note-edge:  #c9d2bd;  /* callout edge                 */
   --signal:     #1b4dc1;  /* interactive + live only      */
   --signal-sub: #e6ecfa;  /* signal wash                  */
 
@@ -39,6 +41,7 @@ html {
 
 body {
   background-color: var(--paper);
+  position: relative;
   color: var(--ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -68,6 +71,49 @@ code, pre, .mono, .tabular {
 
 .tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   BACKGROUND
+   Ruled reference paper, plus two very faint washes that
+   drift slowly against each other. Alphas are kept under
+   0.05 so nothing here reduces text contrast.
+   ========================================================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(to right, rgba(26, 30, 28, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 30, 28, 0.035) 1px, transparent 1px);
+  background-size: 34px 34px;
+  /* The ruling fades out down the page, so the lower half breathes. */
+  mask-image: linear-gradient(to bottom, #000 0%, #000 22%, transparent 78%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 22%, transparent 78%);
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(42rem 42rem at 18% 12%, rgba(27, 77, 193, 0.045), transparent 60%),
+    radial-gradient(38rem 38rem at 82% 68%, rgba(31, 92, 61, 0.04), transparent 62%);
+  animation: drift 48s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  from { transform: translate3d(-2%, -1%, 0) scale(1); }
+  to   { transform: translate3d(2%, 2%, 0) scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
 }
 
 /* =========================================================

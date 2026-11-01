@@ -137,11 +137,11 @@ export default function ProjectPage() {
         Risk something to set policy against.
       </p>
 
-      <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 mb-10">
-        <h2 className="text-sm font-semibold text-amber-300 mb-1">
+      <div className="p-5 mb-10" style={{ background: "var(--note-bg)", borderLeft: "3px solid var(--note-edge)" }}>
+        <h2 className="text-sm mb-2" style={{ color: "var(--ink)" }}>
           On the target variable
         </h2>
-        <p className="text-sm text-gray-300 leading-relaxed">
+        <p className="prose-serif text-[0.95rem]" style={{ color: "var(--ink-2)" }}>
           This dataset labels each application approved or rejected. There is no
           observed default flag. I treat rejection as a proxy for
           default-prone risk, which is a real limitation: approval is the
@@ -156,21 +156,21 @@ export default function ProjectPage() {
       <div className="overflow-x-auto mb-4">
         <table className="w-full text-sm border-collapse">
           <thead>
-            <tr className="border-b  text-gray-400 text-left">
+            <tr className="text-left" style={{ borderBottom: "1px solid var(--rule-firm)", color: "var(--ink-3)" }}>
               <th className="py-2 pr-4 font-medium">Model</th>
               <th className="py-2 px-3 font-medium text-right">Accuracy</th>
               <th className="py-2 px-3 font-medium text-right">F1</th>
               <th className="py-2 pl-3 font-medium text-right">ROC-AUC</th>
             </tr>
           </thead>
-          <tbody className="text-gray-200">
+          <tbody style={{ color: "var(--ink)" }}>
             {[
               ["Random Forest", "0.9965", "0.9953", "0.9995"],
               ["Gradient Boosting", "0.9941", "0.9922", "0.9990"],
               ["MLP (neural net)", "0.9684", "0.9579", "0.9939"],
               ["Logistic Regression", "0.9157", "0.8857", "0.9744"],
             ].map(([m, a, f, r]) => (
-              <tr key={m} className="border-b ">
+              <tr key={m} style={{ borderBottom: "1px solid var(--rule)" }}>
                 <td className="py-2 pr-4">{m}</td>
                 <td className="py-2 px-3 text-right tabular-nums">{a}</td>
                 <td className="py-2 px-3 text-right tabular-nums">{f}</td>

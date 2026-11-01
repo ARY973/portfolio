@@ -9,10 +9,9 @@ export default function About() {
       <div className="grid md:grid-cols-[1fr_15rem] gap-x-14 gap-y-10 items-start">
         <div className="prose-serif text-lg max-w-[62ch] space-y-5">
           <p>
-            I came to Logan from Pune in August 2025, alone with three
-            suitcases, for a Master of Management Information Systems at Utah
-            State University&apos;s Huntsman School of Business. It was the
-            first time I had left India.
+            I am a Master of Management Information Systems student at Utah
+            State University&apos;s Huntsman School of Business, originally
+            from Pune, India.
           </p>
           <p style={{ color: "var(--ink-2)" }}>
             What I like about data work is the part after the model. At the

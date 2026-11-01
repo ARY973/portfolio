@@ -15,7 +15,7 @@ export default function HousingProject() {
       <div className="py-6" style={{ borderTop: "1px solid var(--rule)" }}>
         <h2 className="text-xl font-semibold mb-4">Key Insights</h2>
 
-        <ul className="text-gray-200 space-y-2">
+        <ul className="prose-serif space-y-2" style={{ color: "var(--ink-2)" }}>
           <li>• Feature engineering for housing attributes</li>
           <li>• Regression modeling for price prediction</li>
           <li>• Model evaluation using RMSE and R²</li>

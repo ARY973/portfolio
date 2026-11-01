@@ -29,8 +29,7 @@ export default function ConnectSection() {
         className="prose-serif text-lg max-w-[52ch] mb-14"
         style={{ color: "var(--ink-2)" }}
       >
-        I am on an F-1 visa and eligible for STEM OPT, which covers up to three
-        years of work authorisation without sponsorship.
+        Open to analyst and data roles. The quickest way to reach me is email.
       </p>
 
       <dl className="rule-top" style={{ borderColor: "var(--rule-firm)" }}>
