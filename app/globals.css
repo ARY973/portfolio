@@ -178,6 +178,72 @@ a.link:hover {
 }
 
 /* =========================================================
+   SCROLL-LINKED REVEAL
+
+   Tied to scroll position rather than fired at a threshold,
+   so blocks rise as you come down the page and settle back
+   as you go up. Native CSS scroll-driven animation: no
+   observers, no JS, and reversible for free.
+
+   Browsers without animation-timeline skip the whole thing
+   and render everything visible, which is the correct
+   fallback. Hidden entirely from anyone who asked for less
+   motion.
+   ========================================================= */
+@keyframes revealUp {
+  from {
+    opacity: 0.18;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Section headings and their standfirst. */
+    main > section:not(:first-of-type) > h2,
+    main > section:not(:first-of-type) > p,
+    main > section > div > h2,
+    main > section > div > p {
+      animation: revealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 8% entry 46%;
+    }
+
+    /* Each ruled row carries its own timeline, so the stagger
+       comes from real position rather than an index delay. */
+    main .spine,
+    main figure,
+    main table tbody tr {
+      animation: revealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 4% entry 38%;
+    }
+
+    /* The hero is already on screen; it should not animate in. */
+    main > section:first-of-type .spine {
+      animation: none;
+    }
+
+    /* The full-bleed model band lifts very slightly as it arrives,
+       which is what makes it read as the loud moment. */
+    main > section#model {
+      animation: bandLift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+  }
+}
+
+@keyframes bandLift {
+  from { transform: translateY(10px); }
+  to   { transform: none; }
+}
+
+/* =========================================================
    MOTION
    One orchestrated moment on load; nothing else moves on
    its own.
