@@ -10,14 +10,11 @@
   to   { opacity: 1; transform: none; }
 }
 
-@keyframes labCin {
-  from { opacity: 0; transform: scale(0.88) translateY(40px); filter: blur(6px); }
-  to   { opacity: 1; transform: none; filter: blur(0); }
-}
-
-@keyframes labCout {
-  from { opacity: 1; transform: none; filter: blur(0); }
-  to   { opacity: 0.15; transform: scale(0.9) translateY(-28px); filter: blur(5px); }
+@keyframes labC {
+  0%   { opacity: 0; transform: scale(0.88) translateY(44px); filter: blur(6px); }
+  34%  { opacity: 1; transform: none; filter: blur(0); }
+  72%  { opacity: 1; transform: none; filter: blur(0); }
+  100% { opacity: 0.12; transform: scale(0.9) translateY(-30px); filter: blur(5px); }
 }
 
 @keyframes labDleft {
@@ -45,10 +42,12 @@
     }
 
     /* Arrives from behind, then sinks back as it leaves the top. */
+    /* One animation across the whole pass: two animations on the same
+       properties would have let the later one win outright. */
     .lab-c .lab-row {
-      animation: labCin linear both, labCout linear both;
-      animation-timeline: view(), view();
-      animation-range: cover 2% cover 32%, cover 70% cover 96%;
+      animation: labC linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
     }
 
     .lab-d .lab-row:nth-child(odd) {
