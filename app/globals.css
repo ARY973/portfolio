@@ -180,66 +180,103 @@ a.link:hover {
 /* =========================================================
    SCROLL-LINKED REVEAL
 
-   Tied to scroll position rather than fired at a threshold,
-   so blocks rise as you come down the page and settle back
-   as you go up. Native CSS scroll-driven animation: no
-   observers, no JS, and reversible for free.
+   Content arrives from behind and sinks back as it leaves,
+   bound to scroll position so it reverses on the way up.
 
-   Browsers without animation-timeline skip the whole thing
-   and render everything visible, which is the correct
-   fallback. Hidden entirely from anyone who asked for less
-   motion.
+   The arrival is deliberately concentrated: it completes in
+   the first fifth of the element's pass through the
+   viewport, so it reads as an event rather than a drift.
+   Then a long hold while the thing is actually being read.
+
+   Native CSS scroll-driven animation. Browsers without
+   animation-timeline render everything visible, and anyone
+   who asked for less motion gets none of it.
    ========================================================= */
-@keyframes revealUp {
-  from {
-    opacity: 0.18;
-    transform: translateY(16px);
+@keyframes arrive {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(38px);
   }
-  to {
+  18% {
     opacity: 1;
     transform: none;
+  }
+  84% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0.14;
+    transform: scale(0.96) translateY(-26px);
+  }
+}
+
+/* Figures get a touch of defocus too; text never does, because
+   blurred type looks like a rendering fault. */
+@keyframes arriveFigure {
+  0% {
+    opacity: 0;
+    transform: scale(0.93) translateY(42px);
+    filter: blur(5px);
+  }
+  18% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+  84% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0.14;
+    transform: scale(0.96) translateY(-26px);
+    filter: blur(4px);
   }
 }
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    /* Section headings and their standfirst. */
     main > section:not(:first-of-type) > h2,
     main > section:not(:first-of-type) > p,
     main > section > div > h2,
-    main > section > div > p {
-      animation: revealUp linear both;
-      animation-timeline: view();
-      animation-range: cover 2% cover 26%;
-    }
-
-    /* Each ruled row carries its own timeline, so the stagger
-       comes from real position rather than an index delay. */
+    main > section > div > p,
     main .spine,
-    main figure,
-    main table tbody tr {
-      animation: revealUp linear both;
+    main table tbody tr,
+    main ol > li {
+      animation: arrive ease-out both;
       animation-timeline: view();
-      animation-range: cover 1% cover 22%;
+      animation-range: cover 0% cover 100%;
     }
 
-    /* The hero is already on screen; it should not animate in. */
-    main > section:first-of-type .spine {
+    main figure,
+    main canvas,
+    main svg {
+      animation: arriveFigure ease-out both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    /* The hero is on screen at load; nothing there should arrive. */
+    main > section:first-of-type .spine,
+    main > section:first-of-type canvas,
+    main > section:first-of-type p,
+    main > section:first-of-type h2 {
       animation: none;
     }
 
-    /* The full-bleed model band lifts very slightly as it arrives,
-       which is what makes it read as the loud moment. */
+    /* The band lifts as a whole, so it still lands as the loud moment. */
     main > section#model {
-      animation: bandLift linear both;
+      animation: bandLift ease-out both;
       animation-timeline: view();
-      animation-range: cover 0% cover 18%;
+      animation-range: cover 0% cover 20%;
     }
   }
 }
 
 @keyframes bandLift {
-  from { transform: translateY(10px); }
+  from { transform: translateY(18px); }
   to   { transform: none; }
 }
 
