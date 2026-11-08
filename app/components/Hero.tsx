@@ -1,5 +1,5 @@
 import DecisionBoundary from "./DecisionBoundary";
-import EspressoHero from "./espresso/EspressoHero";
+import BrewSequence from "./espresso/BrewSequence";
 
 const CURRENT = [
   {
@@ -22,7 +22,7 @@ const CURRENT = [
 export default function Hero() {
   return (
     <section className="px-6 pb-24">
-      <EspressoHero />
+      <BrewSequence />
 
       <div className="max-w-5xl mx-auto">
       {/* The codebook entry: what he is doing right now, as typed rows. */}
