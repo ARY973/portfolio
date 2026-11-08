@@ -66,13 +66,12 @@ export default function EspressoHero() {
     let frame = 0;
     const measure = () => {
       frame = 0;
-      const el = wrapRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const span = window.innerHeight + rect.height;
-      const travelled = window.innerHeight - rect.top;
-      const raw = (travelled / span - 0.06) / 0.62;
-      const l = Math.min(Math.max(raw, 0), 1);
+      // Driven by page scroll, not by the element's travel: the hero is
+      // already on screen at load, so element-travel starts the cup
+      // two-thirds full. This starts empty and fills over roughly one and a
+      // sixth screens of scrolling.
+      const span = window.innerHeight * 1.15;
+      const l = Math.min(Math.max(window.scrollY / span, 0), 1);
       level.current = l;
 
       let next = 0;
