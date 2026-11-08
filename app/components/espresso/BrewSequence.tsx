@@ -29,42 +29,48 @@ function useMedia(query: string) {
 const STEPS = [
   {
     at: 0.0,
-    step: "Machine",
+    step: "The machine",
     title: "Data analyst",
     body: "I work across justice-system reporting, a meal-delivery programme and credit-risk modelling. What I care about is the part after the model, where somebody has to act on it.",
   },
   {
-    at: 0.16,
-    step: "Dose",
+    at: 0.13,
+    step: "Weigh",
     title: "Weigh the problem first",
     body: "At the Transforming Communities Institute the brief came from the Executive Director, not a ticket. Most of the work was understanding what the research staff actually needed before writing anything.",
   },
   {
-    at: 0.32,
+    at: 0.28,
     step: "Grind",
     title: "Break it down evenly",
     body: "Five Airtable tables into one coded wide-format dataset, delivered as SPSS-ready files on a weekly schedule. Uneven grounds ruin a shot; uneven joins ruin a finding.",
   },
   {
-    at: 0.46,
+    at: 0.43,
     step: "Tamp",
     title: "Hold the method steady",
-    body: "Versioned codebooks and a data dictionary, so the same question asked twice gets the same answer. This is the dull part that makes the rest trustworthy.",
+    body: "Versioned codebooks and a data dictionary, so the same question asked twice gets the same answer. The dull part is what makes the rest trustworthy.",
   },
   {
-    at: 0.58,
+    at: 0.56,
+    step: "Place the cup",
+    title: "Decide where it lands",
+    body: "Before anything runs, know who receives it and in what form. The CJA pipeline writes SPSS-ready files to Box on a schedule, because that is where the research staff actually work.",
+  },
+  {
+    at: 0.66,
     step: "Extract",
     title: "Pull it, then try to break it",
     body: "Four models benchmarked on 4,269 loan applications, gradient boosting at 99% accuracy. Then I removed the credit score and watched it collapse to 0.61, which is the result that actually mattered.",
   },
   {
-    at: 0.76,
+    at: 0.8,
     step: "Lengthen",
     title: "Make it drinkable",
     body: "A shot nobody can drink is not a result. At Meals on Wheels the reporting has to be usable by programme staff who did not build it, which is most of the job.",
   },
   {
-    at: 0.9,
+    at: 0.92,
     step: "Serve",
     title: "Hand over a decision",
     body: "Don't score credit-invisible borrowers on this feature set. That sentence is the deliverable. Everything above it is how I got there.",
@@ -151,7 +157,7 @@ export default function BrewSequence() {
     <section
       ref={trackRef}
       aria-label="How the work goes, as a shot being pulled"
-      style={{ height: `${STEPS.length * 85}vh` }}
+      style={{ height: `${STEPS.length * 58}vh` }}
       className="relative"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
