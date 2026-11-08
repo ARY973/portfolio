@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import SiteNav from "./components/SiteNav";
+import BackgroundFX from "./components/BackgroundFX";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable}`}
     >
       <body>
+        {/* Background layers: the lamp sits behind content, grain over it. */}
+        <BackgroundFX />
+        <div className="lamp" aria-hidden="true" />
+        <div className="grain" aria-hidden="true" />
+
         <SiteNav />
 
         <main id="main">{children}</main>

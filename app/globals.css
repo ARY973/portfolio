@@ -83,7 +83,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: -3;
   background-color: var(--paper);
   background-image:
     linear-gradient(to right, rgba(26, 30, 28, 0.035) 1px, transparent 1px),
@@ -93,6 +93,64 @@ body::before {
   mask-image: linear-gradient(to bottom, #000 0%, #000 22%, transparent 78%);
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 22%, transparent 78%);
   pointer-events: none;
+}
+
+/* =========================================================
+   THE LAMP
+
+   The same ruling again, darker, revealed only in a soft
+   circle around the pointer. The grid appears to catch
+   light as the cursor passes, which adds life without
+   adding any new shape or colour to the page.
+
+   Only where there is a real pointer. Position comes from
+   BackgroundFX as two custom properties; this layer never
+   triggers layout, just a composited mask move.
+   ========================================================= */
+@media (hover: hover) and (pointer: fine) {
+  .lamp {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    opacity: var(--lamp, 0);
+    transition: opacity 400ms ease;
+    background-image:
+      linear-gradient(to right, rgba(26, 30, 28, 0.16) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(26, 30, 28, 0.16) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(
+      220px circle at var(--mx, 50vw) var(--my, 50vh),
+      #000 0%,
+      rgba(0, 0, 0, 0.55) 38%,
+      transparent 72%
+    );
+    -webkit-mask-image: radial-gradient(
+      220px circle at var(--mx, 50vw) var(--my, 50vh),
+      #000 0%,
+      rgba(0, 0, 0, 0.55) 38%,
+      transparent 72%
+    );
+  }
+}
+
+/* =========================================================
+   GRAIN
+
+   Fine monochrome noise over everything, so the paper reads
+   as a surface rather than a lit panel. Static: no motion,
+   no cost after first paint.
+   ========================================================= */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
 }
 
 body::after {
