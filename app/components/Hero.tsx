@@ -1,4 +1,5 @@
 import DecisionBoundary from "./DecisionBoundary";
+import EspressoHero from "./espresso/EspressoHero";
 
 const CURRENT = [
   {
@@ -21,20 +22,7 @@ const CURRENT = [
 export default function Hero() {
   return (
     <section className="max-w-5xl mx-auto px-6 pt-28 pb-24 md:pt-44 md:pb-32">
-      <div className="rise">
-        <h1 className="text-[3rem] md:text-[5rem] leading-[0.98] max-w-[16ch]">
-          Aryan Mudhole
-        </h1>
-
-        <p
-          className="prose-serif mt-8 text-xl md:text-[1.75rem] md:leading-snug max-w-[44ch]"
-          style={{ color: "var(--ink-2)" }}
-        >
-          Data analyst working across justice-system reporting, a meal-delivery
-          programme, and credit-risk modelling. I care most about the part after
-          the model, where someone has to act on it.
-        </p>
-      </div>
+      <EspressoHero />
 
       {/* The codebook entry: what he is doing right now, as typed rows. */}
       <dl

@@ -23,6 +23,11 @@
   --signal:     #1b4dc1;  /* interactive + live only      */
   --signal-sub: #e6ecfa;  /* signal wash                  */
 
+  /* Espresso. Dark roast rather than beige, so the palette
+     reads as considered instead of defaulting to warm cream. */
+  --crema:      #8c4a21;  /* accent: crema at the edge     */
+  --roast:      #2a150c;  /* darkest, for weight           */
+
   /* Semantic, used only where it carries meaning (the model) */
   --reject:     #9b2c2c;
   --approve:    #1f5c3d;
