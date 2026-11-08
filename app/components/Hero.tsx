@@ -21,9 +21,10 @@ const CURRENT = [
 
 export default function Hero() {
   return (
-    <section className="max-w-5xl mx-auto px-6 pt-28 pb-24 md:pt-44 md:pb-32">
+    <section className="px-6 pb-24">
       <EspressoHero />
 
+      <div className="max-w-5xl mx-auto">
       {/* The codebook entry: what he is doing right now, as typed rows. */}
       <dl
         className="mt-16 rule-top"
@@ -52,7 +53,9 @@ export default function Hero() {
         <DecisionBoundary />
       </div>
 
-      <p className="mt-12 text-sm" style={{ color: "var(--ink-2)" }}>
+      </div>
+
+      <p className="max-w-5xl mx-auto mt-12 text-sm" style={{ color: "var(--ink-2)" }}>
         MMIS candidate at Utah State University&apos;s Huntsman School of
         Business, graduating May 2027.{" "}
         <a href="#model" className="link">

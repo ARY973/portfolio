@@ -3,12 +3,9 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
-/* The 3D bundle is fetched only after the page is interactive, so the
+/* The 3D bundle is fetched only once the page is interactive, so the
    headline paints immediately whatever the network is doing. */
-const CupScene = dynamic(() => import("./CupScene"), {
-  ssr: false,
-  loading: () => null,
-});
+const CupScene = dynamic(() => import("./CupScene"), { ssr: false, loading: () => null });
 
 function useMedia(query: string) {
   const subscribe = useCallback(
@@ -26,30 +23,33 @@ function useMedia(query: string) {
   );
 }
 
-/** The pour, as the reader scrolls: dose, grind, tamp, extract, pour. */
+/**
+ * Espresso to americano, as the reader scrolls. Each stage names how the
+ * work actually goes, which is the point: the drink is the frame, the
+ * sentences are the content.
+ */
 const STAGES = [
   { at: 0.0, label: "Dose", note: "Weigh the problem before touching it." },
-  { at: 0.22, label: "Grind", note: "Clean, join, and write the codebook." },
-  { at: 0.46, label: "Tamp", note: "Hold the method steady so the result means something." },
-  { at: 0.7, label: "Extract", note: "Train it, then try to break it." },
-  { at: 0.92, label: "Pour", note: "Hand someone a decision they can act on." },
+  { at: 0.14, label: "Grind", note: "Clean it, join it, write the codebook." },
+  { at: 0.34, label: "Tamp", note: "Hold the method steady so the answer means something." },
+  { at: 0.5, label: "Extract", note: "Train it, then try hard to break it." },
+  { at: 0.74, label: "Lengthen", note: "A shot nobody can drink is not a result. Make it usable by the people who did not build it." },
+  { at: 0.92, label: "Serve", note: "Hand someone a decision they can act on." },
 ];
 
 export default function EspressoHero() {
   const reduced = useMedia("(prefers-reduced-motion: reduce)");
-  const coarse = useMedia("(max-width: 768px)");
+  const small = useMedia("(max-width: 768px)");
 
-  const wrapRef = useRef<HTMLDivElement>(null);
   const level = useRef(0);
   const [stage, setStage] = useState(0);
   const [ready, setReady] = useState(false);
 
-  /* Hold the 3D back until the browser is idle, so it can never compete
-     with first paint. */
   useEffect(() => {
     if (reduced) return;
     const w = window as typeof window & {
       requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
     };
     const start = () => setReady(true);
     if (w.requestIdleCallback) {
@@ -60,18 +60,14 @@ export default function EspressoHero() {
     return () => window.clearTimeout(t);
   }, [reduced]);
 
-  /* Scroll drives the fill. Written to a ref, so scrolling never
-     re-renders React; only the canvas reads it. */
   useEffect(() => {
     let frame = 0;
     const measure = () => {
       frame = 0;
-      // Driven by page scroll, not by the element's travel: the hero is
-      // already on screen at load, so element-travel starts the cup
-      // two-thirds full. This starts empty and fills over roughly one and a
-      // sixth screens of scrolling.
-      const span = window.innerHeight * 1.15;
-      const l = Math.min(Math.max(window.scrollY / span, 0), 1);
+      // Page scroll, not element travel: the hero is on screen at load, so
+      // element travel would start the cup already full.
+      const over = window.innerHeight * 1.5;
+      const l = Math.min(Math.max(window.scrollY / over, 0), 1);
       level.current = l;
 
       let next = 0;
@@ -94,52 +90,66 @@ export default function EspressoHero() {
   const current = STAGES[stage];
 
   return (
-    <div ref={wrapRef} className="grid md:grid-cols-[1fr_22rem] gap-x-14 gap-y-12 items-center">
-      <div className="rise">
-        <h1 className="text-[3rem] md:text-[4.75rem] leading-[0.98] max-w-[14ch]">
-          Aryan Mudhole
-        </h1>
-
-        <p
-          className="prose-serif mt-8 text-xl md:text-[1.6rem] md:leading-snug max-w-[40ch]"
-          style={{ color: "var(--ink-2)" }}
-        >
-          Data analyst working across justice-system reporting, a meal-delivery
-          programme, and credit-risk modelling. I care most about the part after
-          the model, where someone has to act on it.
-        </p>
-
-        {/* The stage reads out as the cup fills. */}
+    <div className="relative" style={{ minHeight: "min(92vh, 860px)" }}>
+      {/* The cup owns the middle of the hero. */}
+      <div
+        className="absolute inset-0 flex items-center justify-center"
+        aria-hidden="true"
+      >
         <div
-          className="mt-10 pt-5 rule-top max-w-[34ch]"
-          style={{ borderColor: "var(--rule-firm)" }}
-          aria-live="polite"
+          style={{
+            width: "min(100%, 46rem)",
+            height: "min(78vh, 680px)",
+          }}
         >
-          <div className="flex items-baseline gap-3">
-            <span className="tabular text-sm" style={{ color: "var(--crema)" }}>
-              {String(stage + 1).padStart(2, "0")}
-            </span>
-            <span className="text-lg">{current.label}</span>
-          </div>
-          <p className="prose-serif text-[0.95rem] mt-1" style={{ color: "var(--ink-2)" }}>
-            {current.note}
-          </p>
+          {ready && !reduced ? (
+            <CupScene level={level} quality={small ? "light" : "full"} />
+          ) : null}
         </div>
       </div>
 
-      <div className="order-first md:order-last">
-        <div
-          className="w-full"
-          style={{ height: "clamp(300px, 46vw, 440px)" }}
-          aria-hidden="true"
-        >
-          {ready && !reduced ? (
-            <CupScene level={level} quality={coarse ? "light" : "full"} />
-          ) : null}
+      {/* Text sits over it, top and bottom, so the cup is never obscured. */}
+      <div className="relative flex flex-col justify-between" style={{ minHeight: "min(92vh, 860px)" }}>
+        <div className="rise pt-20 md:pt-24 text-center">
+          <h1 className="text-[2.75rem] md:text-[4.5rem] leading-[0.98]">
+            Aryan Mudhole
+          </h1>
+          <p
+            className="prose-serif mt-5 text-lg md:text-xl max-w-[34ch] mx-auto"
+            style={{ color: "var(--ink-2)" }}
+          >
+            Data analyst. I care most about the part after the model, where
+            someone has to act on it.
+          </p>
         </div>
-        <p className="text-xs text-center mt-2" style={{ color: "var(--ink-3)" }}>
-          Scroll to pull the shot.
-        </p>
+
+        <div className="pb-12 flex justify-center">
+          <div
+            className="pt-5 rule-top text-center max-w-[40ch] w-full"
+            style={{
+              borderColor: "var(--rule-firm)",
+              background:
+                "linear-gradient(to top, var(--paper) 55%, transparent)",
+            }}
+            aria-live="polite"
+          >
+            <div className="flex items-baseline justify-center gap-3">
+              <span className="tabular text-sm" style={{ color: "var(--crema)" }}>
+                {String(stage + 1).padStart(2, "0")} / {STAGES.length}
+              </span>
+              <span className="text-lg">{current.label}</span>
+            </div>
+            <p
+              className="prose-serif text-[0.95rem] mt-1.5"
+              style={{ color: "var(--ink-2)" }}
+            >
+              {current.note}
+            </p>
+            <p className="text-xs mt-4" style={{ color: "var(--ink-3)" }}>
+              Keep scrolling to pull the shot.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
