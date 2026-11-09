@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { mulberry32 } from "../../lib/rng";
 
 /* ------------------------------------------------------------------ *
@@ -46,15 +47,15 @@ const COUNTER = "#ddd5c8";
 const MACHINE_X = -1.6;
 const GRINDER_X = 0.35;
 const SCALE_X = 1.7;
-const HEAD_Z = 0.82;
+const HEAD_Z = 0.34;
 /* High enough that a locked portafilter clears the rim of the cup under it. */
 const HEAD_Y = 1.15;
 const TRAY_TOP = 0.1;
-const CUP_SCALE = 0.62;
+const CUP_SCALE = 0.58;
 
 /** Where the portafilter is at each phase. */
 const PF_REST: [number, number, number] = [GRINDER_X - 0.02, 0.1, 1.05];
-const PF_UNDER_CHUTE: [number, number, number] = [GRINDER_X, 0.1, 0.26];
+const PF_UNDER_CHUTE: [number, number, number] = [GRINDER_X, 0.1, 0.52];
 /* Tamping happens clear of the grinder, not underneath its chute. */
 const PF_TAMP: [number, number, number] = [GRINDER_X + 0.58, 0.1, 0.85];
 const PF_LOCKED: [number, number, number] = [MACHINE_X, HEAD_Y - 0.18, HEAD_Z];
@@ -68,33 +69,46 @@ const STREAM_TOP = (SPOUT_Y - TRAY_TOP) / CUP_SCALE;
 const CUP_PARKED: [number, number, number] = [-0.45, 0, 1.3];
 const CUP_UNDER: [number, number, number] = [MACHINE_X, 0, HEAD_Z];
 
+/* One closed outline: up the outside, over the rim, down the inside, across
+   the inner floor. The walls stay ~0.05 apart and the floor is 0.10 thick, so
+   no two surfaces sit close enough to fight for depth. */
 function cupProfile() {
-  const pts: THREE.Vector2[] = [];
-  (
+  return (
     [
-      [0, 0],
-      [0.38, 0],
-      [0.47, 0.05],
-      [0.58, 0.2],
-      [0.66, 0.46],
-      [0.7, 0.74],
-      [0.71, 0.86],
+      [0.0, 0.0],
+      [0.3, 0.0],
+      [0.33, 0.04],
+      [0.38, 0.18],
+      [0.44, 0.45],
+      [0.47, 0.74],
+      [0.48, 0.92],
+      [0.44, 0.94],
+      [0.43, 0.74],
+      [0.4, 0.45],
+      [0.34, 0.18],
+      [0.26, 0.1],
+      [0.0, 0.1],
     ] as [number, number][]
-  ).forEach(([x, y]) => pts.push(new THREE.Vector2(x, y)));
-  pts.push(new THREE.Vector2(0.68, 0.88));
-  (
-    [
-      [0.63, 0.74],
-      [0.54, 0.46],
-      [0.46, 0.22],
-      [0.36, 0.08],
-      [0, 0.06],
-    ] as [number, number][]
-  ).forEach(([x, y]) => pts.push(new THREE.Vector2(x, y)));
-  return pts;
+  ).map(([x, y]) => new THREE.Vector2(x, y));
 }
 
 /* ---------------------------------------------------------------- */
+
+/* Without something to reflect, a metalness>0 surface renders black. A small
+   procedural room gives the steel and the chrome something to pick up.
+   Attached declaratively rather than assigned onto the scene. */
+function Env() {
+  const gl = useThree((s) => s.gl);
+  const texture = useMemo(() => {
+    const pmrem = new THREE.PMREMGenerator(gl);
+    const room = new RoomEnvironment();
+    const t = pmrem.fromScene(room, 0.04).texture;
+    pmrem.dispose();
+    return t;
+  }, [gl]);
+  useEffect(() => () => texture.dispose(), [texture]);
+  return <primitive object={texture} attach="environment" />;
+}
 
 function Counter() {
   return (
@@ -191,8 +205,8 @@ function Grinder({ level }: { level: React.RefObject<number> }) {
 
   return (
     <group position={[GRINDER_X, 0, 0]}>
-      <mesh position={[0, 0.07, 0]} castShadow receiveShadow>
-        <boxGeometry args={[0.72, 0.14, 0.78]} />
+      <mesh position={[0, 0.07, -0.06]} castShadow receiveShadow>
+        <boxGeometry args={[0.72, 0.14, 0.5]} />
         <meshStandardMaterial color={BLACK} roughness={0.5} metalness={0.3} />
       </mesh>
       <mesh position={[0, 0.78, -0.08]} castShadow receiveShadow>
@@ -215,15 +229,11 @@ function Grinder({ level }: { level: React.RefObject<number> }) {
         <cylinderGeometry args={[0.3, 0.18, 0.4, 24]} />
         <meshStandardMaterial color="#53301a" roughness={0.9} />
       </mesh>
-      {/* Chute: grounds leave here, which is where the portafilter waits. */}
-      <mesh position={[0, 0.63, 0.26]} rotation-x={0.22} castShadow>
-        <cylinderGeometry args={[0.1, 0.13, 0.3, 20]} />
+      {/* Chute: angles down and forward from the body, ending directly over
+          the basket, so the grounds have somewhere to come from. */}
+      <mesh position={[0, 0.7, 0.38]} rotation-x={0.55} castShadow>
+        <cylinderGeometry args={[0.1, 0.13, 0.52, 20]} />
         <meshStandardMaterial color={STEEL_DARK} roughness={0.28} metalness={0.85} />
-      </mesh>
-      {/* Fork the portafilter rests in */}
-      <mesh position={[0, 0.3, 0.3]} castShadow>
-        <boxGeometry args={[0.5, 0.05, 0.16]} />
-        <meshStandardMaterial color={STEEL_DARK} roughness={0.3} metalness={0.8} />
       </mesh>
     </group>
   );
@@ -232,35 +242,71 @@ function Grinder({ level }: { level: React.RefObject<number> }) {
 function Machine() {
   return (
     <group position={[MACHINE_X, 0, 0]}>
-      <mesh position={[0, 0.92, 0]} castShadow receiveShadow>
-        <boxGeometry args={[1.5, 1.84, 1.3]} />
-        <meshStandardMaterial color={STEEL} roughness={0.34} metalness={0.78} />
+      {/* Built as separate masses that leave a brew alcove open at the front,
+          rather than one slab with a black rectangle painted on it. */}
+      <mesh position={[0, 1.57, 0]} castShadow receiveShadow>
+        <boxGeometry args={[1.5, 0.54, 1.3]} />
+        <meshStandardMaterial color={STEEL} roughness={0.33} metalness={0.7} />
       </mesh>
-      <mesh position={[0, 0.92, 0.66]} castShadow>
-        <boxGeometry args={[1.24, 1.46, 0.06]} />
-        <meshStandardMaterial color={BLACK} roughness={0.5} metalness={0.25} />
+      <mesh position={[-0.6, 0.65, 0]} castShadow receiveShadow>
+        <boxGeometry args={[0.3, 1.3, 1.3]} />
+        <meshStandardMaterial color={STEEL} roughness={0.33} metalness={0.7} />
       </mesh>
+      <mesh position={[0.6, 0.65, 0]} castShadow receiveShadow>
+        <boxGeometry args={[0.3, 1.3, 1.3]} />
+        <meshStandardMaterial color={STEEL} roughness={0.33} metalness={0.7} />
+      </mesh>
+      <mesh position={[0, 0.65, -0.43]} castShadow receiveShadow>
+        <boxGeometry args={[0.92, 1.3, 0.45]} />
+        <meshStandardMaterial color={STEEL_DARK} roughness={0.4} metalness={0.6} />
+      </mesh>
+
+      {/* Rounded steel crown */}
       <mesh position={[0, 1.84, 0]} rotation-z={Math.PI / 2} castShadow>
         <cylinderGeometry args={[0.6, 0.6, 1.5, 40]} />
-        <meshStandardMaterial color={STEEL} roughness={0.28} metalness={0.85} />
+        <meshStandardMaterial color={STEEL} roughness={0.26} metalness={0.8} />
       </mesh>
-      <mesh position={[0.44, 1.46, 0.7]} rotation-x={Math.PI / 2}>
-        <cylinderGeometry args={[0.17, 0.17, 0.05, 32]} />
-        <meshStandardMaterial color={PORCELAIN} roughness={0.25} />
+
+      {/* Back wall of the alcove, so the recess reads as depth */}
+      <mesh position={[0, 0.65, -0.19]} receiveShadow>
+        <boxGeometry args={[0.9, 1.3, 0.04]} />
+        <meshStandardMaterial color="#1f2023" roughness={0.55} metalness={0.3} />
       </mesh>
-      <mesh position={[0.44, 1.46, 0.73]} rotation-x={Math.PI / 2}>
-        <torusGeometry args={[0.17, 0.02, 10, 32]} />
-        <meshStandardMaterial color={STEEL_DARK} roughness={0.3} metalness={0.9} />
+
+      {/* Pressure gauge and two controls, on the upper face */}
+      <mesh position={[0.42, 1.55, 0.66]} rotation-x={Math.PI / 2}>
+        <cylinderGeometry args={[0.15, 0.15, 0.04, 32]} />
+        <meshStandardMaterial color={PORCELAIN} roughness={0.3} metalness={0.05} />
       </mesh>
-      {/* Group head */}
+      <mesh position={[0.42, 1.55, 0.68]} rotation-x={Math.PI / 2}>
+        <torusGeometry args={[0.15, 0.022, 12, 32]} />
+        <meshStandardMaterial color={STEEL_DARK} roughness={0.22} metalness={0.95} />
+      </mesh>
+      {[-0.48, -0.22].map((x) => (
+        <mesh key={x} position={[x, 1.55, 0.67]} rotation-x={Math.PI / 2}>
+          <cylinderGeometry args={[0.07, 0.07, 0.05, 24]} />
+          <meshStandardMaterial color={BLACK} roughness={0.4} metalness={0.5} />
+        </mesh>
+      ))}
+
+      {/* Group head, hanging from the lintel inside the alcove */}
+      <mesh position={[0, HEAD_Y + 0.12, HEAD_Z]} castShadow>
+        <boxGeometry args={[0.42, 0.38, 0.42]} />
+        <meshStandardMaterial color={STEEL_DARK} roughness={0.3} metalness={0.85} />
+      </mesh>
       <mesh position={[0, HEAD_Y, HEAD_Z]} castShadow>
         <cylinderGeometry args={[0.29, 0.33, 0.4, 32]} />
         <meshStandardMaterial color={STEEL_DARK} roughness={0.26} metalness={0.9} />
       </mesh>
-      {/* Drip tray, raised off the slab on its own lip */}
-      <mesh position={[0, 0.05, 0.74]} receiveShadow castShadow>
-        <boxGeometry args={[1.5, 0.1, 1.05]} />
-        <meshStandardMaterial color={STEEL_DARK} roughness={0.3} metalness={0.85} />
+
+      {/* Drip tray on the alcove floor */}
+      <mesh position={[0, 0.05, 0.22]} receiveShadow castShadow>
+        <boxGeometry args={[0.88, 0.1, 0.84]} />
+        <meshStandardMaterial color={STEEL_DARK} roughness={0.32} metalness={0.8} />
+      </mesh>
+      <mesh position={[0, 0.101, 0.22]} rotation-x={-Math.PI / 2} receiveShadow>
+        <planeGeometry args={[0.8, 0.76]} />
+        <meshStandardMaterial color="#3a3c40" roughness={0.6} metalness={0.5} />
       </mesh>
     </group>
   );
@@ -375,14 +421,14 @@ function Grounds({ level, count }: { level: React.RefObject<number>; count: numb
       // Falls the short gap from chute mouth to basket, not from the sky.
       const p = (seed.off[i] + active * 2.2) % 1;
       arr[i * 3] = seed.pos[i * 3];
-      arr[i * 3 + 1] = 0.38 - p * 0.26;
+      arr[i * 3 + 1] = 0.37 - p * 0.25;
       arr[i * 3 + 2] = seed.pos[i * 3 + 2];
     }
     ref.current.geometry.attributes.position.needsUpdate = true;
   });
 
   return (
-    <points ref={ref} position={[GRINDER_X, 0.1, PF_UNDER_CHUTE[2]]} frustumCulled={false}>
+    <points ref={ref} position={[GRINDER_X, 0.1, 0.516]} frustumCulled={false}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[seed.pos, 3]} />
       </bufferGeometry>
@@ -401,8 +447,9 @@ function Drink({ level }: { level: React.RefObject<number> }) {
     const water = span(l, WATER[0], WATER[1]);
     const fill = shot * 0.4 + water * 0.55;
     if (ref.current) {
-      ref.current.position.y = 0.08 + fill * 0.72;
-      ref.current.scale.setScalar(0.38 + fill * 0.28);
+      ref.current.position.y = 0.12 + fill * 0.78;
+      // Stays inside the tapering wall instead of poking through it.
+      ref.current.scale.setScalar(0.26 + fill * 0.16);
       ref.current.visible = fill > 0.01;
     }
     if (matRef.current) {
@@ -441,7 +488,7 @@ function Stream({
     if (!on) return;
     const shot = span(l, EXTRACT[0], EXTRACT[1]);
     const water = span(l, WATER[0], WATER[1]);
-    const surface = 0.08 + (shot * 0.4 + water * 0.55) * 0.72;
+    const surface = 0.12 + (shot * 0.4 + water * 0.55) * 0.78;
     const top = STREAM_TOP;
     const h = Math.max(top - surface, 0.01);
     ref.current.scale.y = h;
@@ -482,7 +529,7 @@ function Steam({ level, count }: { level: React.RefObject<number>; count: number
     for (let i = 0; i < count; i++) {
       const y = (seed.pos[i * 3 + 1] + t * 0.2) % 1;
       arr[i * 3] = seed.pos[i * 3] + Math.sin(t * 0.7 + seed.phase[i]) * 0.08 * y;
-      arr[i * 3 + 1] = 0.92 + y;
+      arr[i * 3 + 1] = 1.0 + y;
       arr[i * 3 + 2] = seed.pos[i * 3 + 2] + Math.cos(t * 0.6 + seed.phase[i]) * 0.08 * y;
     }
     ref.current.geometry.attributes.position.needsUpdate = true;
@@ -514,8 +561,8 @@ function Cup({ level }: { level: React.RefObject<number> }) {
   return (
     <group ref={group} position={CUP_PARKED} scale={CUP_SCALE}>
       <mesh castShadow receiveShadow>
-        <latheGeometry args={[pts, 64]} />
-        <meshStandardMaterial color={PORCELAIN} roughness={0.34} side={THREE.DoubleSide} />
+        <latheGeometry args={[pts, 72]} />
+        <meshStandardMaterial color={PORCELAIN} roughness={0.38} metalness={0.02} />
       </mesh>
       <Drink level={level} />
       <Stream level={level} from={EXTRACT[0]} to={EXTRACT[1]} colour="#30170c" radius={0.038} />
@@ -531,7 +578,7 @@ const SHOT = {
   wide: { p: [-0.25, 2.3, 6.8], t: [-0.55, 0.85, 0.4] },
   scale: { p: [1.35, 1.75, 4.4], t: [1.7, 0.42, 0.45] },
   grinder: { p: [0.7, 1.8, 4.4], t: [0.5, 0.6, 0.4] },
-  machine: { p: [-1.05, 1.24, 3.3], t: [-1.6, 0.52, 0.6] },
+  machine: { p: [-1.0, 1.34, 4.15], t: [-1.6, 0.6, 0.55] },
 } as const;
 
 function Rig({ level }: { level: React.RefObject<number> }) {
@@ -566,12 +613,14 @@ export default function BrewScene({
       shadows={!light}
       camera={{ position: [-0.25, 2.3, 6.8], fov: 34 }}
       gl={{ antialias: !light, alpha: true }}
+      scene={{ environmentIntensity: 0.55 }}
       style={{ width: "100%", height: "100%" }}
     >
       <ambientLight intensity={0.76} />
       <directionalLight position={[4, 7, 5]} intensity={1.3} castShadow={!light} shadow-mapSize={[1024, 1024]} />
       <directionalLight position={[-5, 3, -2]} intensity={0.38} />
 
+      <Env />
       <Counter />
       <Machine />
       <Grinder level={level} />
