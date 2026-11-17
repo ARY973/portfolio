@@ -36,9 +36,24 @@ export default function ProjectPage() {
         rather than by reading documentation.
       </p>
 
-      <p className="prose-serif max-w-[62ch] mb-10">
+      <p className="prose-serif max-w-[62ch] mb-6">
         Most streaming demos would run perfectly well as an hourly batch job.
         This one would not, and I can say so with a number.
+      </p>
+
+      <p className="prose-serif max-w-[62ch] mb-10">
+        The code is at{" "}
+        <a
+          href="https://github.com/ARY973/bsky-pipeline"
+          className="link"
+          target="_blank"
+          rel="noreferrer"
+        >
+          github.com/ARY973/bsky-pipeline
+        </a>
+        . It clones and runs from scratch — and the Silver reduction and the
+        schema self-test both run with no Kafka, no Docker and no network, so
+        you can see it work without setting anything up.
       </p>
 
       <div className="mb-16">
