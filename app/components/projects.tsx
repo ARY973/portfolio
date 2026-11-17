@@ -13,6 +13,18 @@ type Project = {
 
 const projects: Project[] = [
   {
+    id: "bsky-streaming",
+    field: "Streaming",
+    year: "Nov 2026",
+    title: "Measuring a firehose before trusting it",
+    summary:
+      "A Kafka pipeline over the Bluesky Jetstream firehose \u2014 one topic keyed by DID so a record's create and delete stay ordered, raw events landed as Bronze, then folded into current state as Silver with deletes tombstoned. Run end to end against the live tail: 46,022 events in 119.6 seconds, 384.8/sec, reduced to 45,697 rows.",
+    finding:
+      "Client-set timestamps span 27 hours inside a two-minute slice of traffic, and 13.8% claim to predate the moment the firehose saw them. That measurement, not a preference, is why ingestion time is the event-time column.",
+    tech: ["Python", "Kafka", "Redpanda", "Confluent Cloud", "Docker", "websockets"],
+    href: "/projects/bluesky-streaming",
+  },
+  {
     id: "grid-demand",
     field: "Data engineering",
     year: "Oct 2026",
@@ -88,7 +100,7 @@ export default function Projects() {
         className="prose-serif text-lg max-w-[58ch] mb-14"
         style={{ color: "var(--ink-2)" }}
       >
-        Six builds. Some are models, some are the pipelines that keep the
+        Seven builds. Some are models, some are the pipelines that keep the
         data arriving. Each one is carried past its output to the decision it
         was supposed to inform.
       </p>
