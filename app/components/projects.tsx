@@ -13,6 +13,30 @@ type Project = {
 
 const projects: Project[] = [
   {
+    id: "grid-demand",
+    field: "Data engineering",
+    year: "Oct 2026",
+    title: "A pipeline that runs without me",
+    summary:
+      "Hourly electricity demand and day-ahead forecast from the EIA API v2, landed through Bronze, Silver and Gold Delta tables on Databricks. Three dependent tasks on a two-hourly schedule, with quality gates that fail the run, secrets kept out of the notebook, and two alerts \u2014 one for the job dying, one for the data going stale while the job succeeds.",
+    finding:
+      "The source produces about 1,740 records a day. Noticing that is the point: hourly batch is correct here, and arguing for streaming would have been r\u00e9sum\u00e9-driven. So I went and measured a source that warranted it instead.",
+    tech: ["Databricks", "PySpark", "Delta Lake", "EIA API v2", "SQL"],
+    href: "/projects/grid-demand-pipeline",
+  },
+  {
+    id: "cja-pipeline",
+    field: "Research data",
+    year: "Apr 2026 to now",
+    title: "Getting justice-system data to the people analysing it",
+    summary:
+      "The pipeline behind the Community Justice Administration programme at USU's Transforming Communities Institute. Five Airtable tables extracted, coded against a versioned codebook, reshaped into the wide format statistical software expects, and delivered to Box as SPSS-ready files on a weekly GitHub Actions schedule.",
+    finding:
+      "The engineering was the easy half. The work that mattered was agreeing the codebook with the researchers and holding it steady across versions, so the same question asked six weeks apart still returns the same answer.",
+    tech: ["Python", "Airtable API", "GitHub Actions", "Box", "SPSS"],
+    href: "/projects/cja-pipeline",
+  },
+  {
     id: "loan-risk",
     field: "Credit risk",
     year: "Feb 2026",
@@ -64,8 +88,9 @@ export default function Projects() {
         className="prose-serif text-lg max-w-[58ch] mb-14"
         style={{ color: "var(--ink-2)" }}
       >
-        Four builds, each one carried past the model to the decision it was
-        supposed to inform.
+        Six builds. Some are models, some are the pipelines that keep the
+        data arriving. Each one is carried past its output to the decision it
+        was supposed to inform.
       </p>
 
       <div className="rule-top" style={{ borderColor: "var(--rule-firm)" }}>

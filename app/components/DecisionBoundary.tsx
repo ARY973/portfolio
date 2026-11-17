@@ -10,7 +10,6 @@ const DATA = points as P[];
 const X_MIN = 300, X_MAX = 900;   // credit score
 const Y_MIN = 0.6, Y_MAX = 5.4;   // loan-to-income ratio
 
-const PAPER = "#f4f5f2";
 const RULE = "#dcdfd9";
 const RULE_FIRM = "#c3c8c0";
 const INK3 = "#6b716d";
