@@ -30,10 +30,10 @@ const projects: Project[] = [
     year: "Apr 2026 to now",
     title: "Getting justice-system data to the people analysing it",
     summary:
-      "The pipeline behind the Community Justice Administration programme at USU's Transforming Communities Institute. Five Airtable tables extracted, coded against a versioned codebook, reshaped into the wide format statistical software expects, and delivered to Box as SPSS-ready files on a weekly GitHub Actions schedule.",
+      "The pipeline behind the Community Justice Administration programme at USU's Transforming Communities Institute. Five Airtable tables through raw, coded and analysis-ready stages, delivered to Box every week by GitHub Actions as a wide CSV, a native SPSS .sav and the codebook that describes it \u2014 all three rebuilt on the same run so they cannot disagree.",
     finding:
-      "The engineering was the easy half. The work that mattered was agreeing the codebook with the researchers and holding it steady across versions, so the same question asked six weeks apart still returns the same answer.",
-    tech: ["Python", "Airtable API", "GitHub Actions", "Box", "SPSS"],
+      "Box was serving a CSV from this week beside a .sav from last week, and nothing errored \u2014 the run was green and the delivery was wrong. Every artefact is now rebuilt with the data it describes, and the run fails outright if one is older than the CSV.",
+    tech: ["Python", "pandas", "Airtable API", "GitHub Actions", "Box SDK", "pyreadstat"],
     href: "/projects/cja-pipeline",
   },
   {
