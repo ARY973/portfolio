@@ -3,11 +3,30 @@
 import { useMemo, useState } from "react";
 import { MODEL_METRICS, LABELS, meanOf, predict } from "../lib/loanModel";
 
-/** The dataset is Indian lending data, so amounts are rupees. */
+/* The dataset is Indian lending data, so the model's own units are rupees
+   and they stay that way — CIBIL is India's credit bureau, and a dollar
+   figure assessed by a CIBIL score would not describe anything real.
+   The dollar amount beside it is a reading aid for anyone without an
+   intuition for lakh and crore: deliberately rounded, never fed back into
+   the model, and the rate it assumes is stated on the page so it cannot
+   drift silently. */
+const RUPEES_PER_USD = 95; // mid-market, November 2026
+
+const usd = (n: number) => {
+  const d = n / RUPEES_PER_USD;
+  if (d >= 1e6) return `$${(d / 1e6).toFixed(1)}M`;
+  if (d >= 1e3) return `$${Math.round(d / 1e3)}k`;
+  return `$${Math.round(d)}`;
+};
+
 const inr = (n: number) => {
-  if (n >= 1e7) return `₹${(n / 1e7).toFixed(2)} Cr`;
-  if (n >= 1e5) return `₹${(n / 1e5).toFixed(1)} L`;
-  return `₹${Math.round(n).toLocaleString("en-IN")}`;
+  const rupees =
+    n >= 1e7
+      ? `₹${(n / 1e7).toFixed(2)} Cr`
+      : n >= 1e5
+        ? `₹${(n / 1e5).toFixed(1)} L`
+        : `₹${Math.round(n).toLocaleString("en-IN")}`;
+  return `${rupees}  ·  ≈${usd(n)}`;
 };
 
 type Control = {
@@ -224,6 +243,13 @@ export default function LoanModelExplorer() {
               {rejected ? "Rejected" : "Approved"}
             </span>
             <span style={{ color: "var(--ink-3)" }}> at the 50% threshold</span>
+          </p>
+
+          <p className="text-xs mb-6" style={{ color: "var(--ink-3)" }}>
+            4,269 Indian loan applications, so the model&apos;s units are
+            rupees and the credit score is CIBIL, India&apos;s bureau score.
+            Dollar figures are a rounded reading aid at ₹{RUPEES_PER_USD} to
+            $1 (November 2026); the model never sees them.
           </p>
 
           <h4 className="text-sm mb-1.5">What is moving it</h4>
