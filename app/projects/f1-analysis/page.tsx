@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function F1Project() {
   return (
     <section className="max-w-3xl mx-auto px-6 py-24">
@@ -31,6 +33,10 @@ export default function F1Project() {
         Read the full analysis →
       </a>
 
+
+      <Link href="/#work" className="link text-sm">
+        ← Back to work
+      </Link>
     </section>
   );
 }

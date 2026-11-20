@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import CodeBlock from "../../components/CodeBlock";
 
 const code = `
@@ -220,6 +222,10 @@ export default function ProjectPage() {
         Read the full analysis →
       </a>
 
+
+      <Link href="/#work" className="link text-sm">
+        ← Back to work
+      </Link>
     </section>
   );
 }

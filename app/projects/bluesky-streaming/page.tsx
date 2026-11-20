@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import PipelineFlow from "../../components/PipelineFlow";
 
 const STAGES = [
@@ -272,6 +274,10 @@ export default function ProjectPage() {
           repository.
         </p>
       </div>
+
+      <Link href="/#work" className="link text-sm">
+        ← Back to work
+      </Link>
     </section>
   );
 }

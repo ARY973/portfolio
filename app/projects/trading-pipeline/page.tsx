@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import PipelineFlow from "../../components/PipelineFlow";
 
 const STAGES = [
@@ -113,9 +115,9 @@ export default function TradingPipeline() {
         0 13 * * 1-5 cd /home/ubuntu/data5500_mycode/final_project && python final_project.py
       </div>
 
-      <a href="/projects" className="link text-sm">
-        ← Back to Projects
-      </a>
+      <Link href="/#work" className="link text-sm">
+        ← Back to work
+      </Link>
 
     </main>
   );
