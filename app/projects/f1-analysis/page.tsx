@@ -8,10 +8,15 @@ export default function F1Project() {
         Formula 1 Performance Analytics
       </h1>
 
-      <p className="prose-serif max-w-[62ch] mb-10">
+      <p className="prose-serif max-w-[62ch] mb-4">
         This project analyzes Formula 1 race data to uncover patterns in driver
         performance, lap consistency, and race strategy using machine learning
         and statistical analysis.
+      </p>
+
+      <p className="prose-serif max-w-[62ch] mb-10 text-sm" style={{ color: "var(--ink-3)" }}>
+        A four-person course project. The linked deck is the team&apos;s joint
+        work and carries all four names.
       </p>
 
       <div className="py-6" style={{ borderTop: "1px solid var(--rule)" }}>
@@ -30,7 +35,7 @@ export default function F1Project() {
         target="_blank"
         className="inline-block mt-8 link"
       >
-        Read the full analysis →
+        Read the team&apos;s full analysis →
       </a>
 
 
